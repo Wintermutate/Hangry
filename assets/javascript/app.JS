@@ -25,9 +25,8 @@ var chosenFoods = [];
 
 function renderImages(selectFood, selectMoney, selectMethod){
 
-if (selectFood == false && selectMoney == false && selectMethod == false){
-
-$("#foodSelect").on("click",function(){
+	$("#foodSelect").on("click",function(){
+		if (selectFood == false && selectMoney == false && selectMethod == false){
 		console.log(selectFood);
 		selectFood = true;
 		$("#row1").css("display","none");
@@ -35,12 +34,12 @@ $("#foodSelect").on("click",function(){
 		$("#row3").css("display","block");
 		$("#row4").css("display","block");
 		$("#row5").css("display","block");
-	});	
- } else if (selectFood == true && selectMoney == false && selectMethod == false) { 
-	
-	$("#poor").on("click",function(){
-		
-		selectMoney = true; 
+	}});	
+   
+	$("#poor").on("click", function(){
+		if (selectFood == true && selectMoney == false && selectMethod == false) {
+		console.log(selectMoney);
+		selectMoney = true;
 		$("#row1").css("display","none");
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
@@ -51,8 +50,11 @@ $("#foodSelect").on("click",function(){
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
 		$("#row10").css("display","block");
-	});		
-		$("#rich").on("click",function(){
+	}});
+	
+	$("#rich").on("click", function(){
+		if (selectFood == true && selectMoney == false && selectMethod == false) {
+		selectMoney = true; 
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
@@ -61,18 +63,23 @@ $("#foodSelect").on("click",function(){
 		$("#row7").css("display","block");
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
-		$("#row10").css("display","block");
-	});
-	
-} else {
-		
-		selectMethod = true; 
-
-
-	
-}		
+		$("#row10").css("display","block");	
+	}});
+ 
 }
 
+ $(".cuisine").on("click", function(){
+ 	
+ 	if ($(this).hasClass("selected")){
+ 	$(this).addClass("deselected");
+ 	$(this).removeClass("selected");
+ 
+ }else if ($(this).hasClass("deselected")){
+ 	
+ 	$(this).addClass("selected");
+ 	$(this).removeClass("deselected");
+ }
+});
 
 renderImages(selectFood, selectMoney, selectMethod);
 
