@@ -17,7 +17,7 @@
 // console.log(cash);
 $(document).ready(function(){
 
-// Intialize global variables. 
+// Initialize global variables. 
 var selectFood = false; 
 var selectMoney = false;
 var selectMethod = false; 
@@ -25,23 +25,23 @@ var chosenFoods = [];
 
 function renderImages(selectFood, selectMoney, selectMethod){
 
-if (selectFood = false && selectMoney = false && selectMethod = false){
+if (selectFood == false && selectMoney == false && selectMethod == false){
 
 $("#foodSelect").on("click",function(){
-	
+		console.log(selectFood);
 		selectFood = true;
 		$("#row1").css("display","none");
 		$("#row2").css("display","block");
 		$("#row3").css("display","block");
 		$("#row4").css("display","block");
 		$("#row5").css("display","block");
-	})	
- } else if (selectFood = true && selectMoney = false && selectMethod = false) { 
+	});	
+ } else if (selectFood == true && selectMoney == false && selectMethod == false) { 
 	
 	$("#poor").on("click",function(){
 		
 		selectMoney = true; 
-		$("#row1").css("display","none")
+		$("#row1").css("display","none");
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
@@ -64,7 +64,7 @@ $("#foodSelect").on("click",function(){
 		$("#row10").css("display","block");
 	});
 	
-	} else if (selectFood = true && selectMoney = true && selectMethod= false){
+} else {
 		
 		selectMethod = true; 
 
@@ -74,7 +74,7 @@ $("#foodSelect").on("click",function(){
 }
 
 
-renderImages();
+renderImages(selectFood, selectMoney, selectMethod);
 
 // event listener for the last click --  not sure what the final delivery step's  ID will be,  so just using "delivery" for now
 // $(document).on('click', '.delivery', function() {
