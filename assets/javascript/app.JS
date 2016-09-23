@@ -16,25 +16,32 @@
 // var cash = $(this).attr('data-money');
 // console.log(cash);
 $(document).ready(function(){
+
 // Intialize global variables. 
 var selectFood = false; 
 var selectMoney = false;
 var selectMethod = false; 
 var chosenFoods = [];
 
-if (selectFood = false && selectMoney = false && selectMethod = false)
+function renderImages(){
 
-$(".img-responsive").on("click",function(){
+if (selectFood = false && selectMoney = false && selectMethod = false){
+
+$("#foodSelect").on("click",function(){
 	
-	$("#row1").css("display","none");
-	$("#row2").css("display","block");
-	$("#row3").css("display","block");
-	$("#row4").css("display","block");
-	$("#row5").css("display","block");
-});else if (selectFood = true && selectMoney = false && selectMethod = false) 
+		selectFood = true;
+		$("#row1").css("display","none");
+		$("#row2").css("display","block");
+		$("#row3").css("display","block");
+		$("#row4").css("display","block");
+		$("#row5").css("display","block");
+	})	
+ } else if (selectFood = true && selectMoney = false && selectMethod = false) { 
 	
 	$("#poor").on("click",function(){
 		
+		selectMoney = true; 
+		$("#row1").css("display","none")
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
@@ -44,9 +51,8 @@ $(".img-responsive").on("click",function(){
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
 		$("#row10").css("display","block");
-});
-else
-	$("#rich").on("click",function(){
+	});		
+		$("#rich").on("click",function(){
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
@@ -56,10 +62,18 @@ else
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
 		$("#row10").css("display","block");
-});
+	});
+	
+	} else if (selectFood = true && selectMoney = true && selectMethod= false){
+		selectMethod = true; 
 
-// });
 
+	
+}		
+};
+};
+
+renderImages();
 
 // event listener for the last click --  not sure what the final delivery step's  ID will be,  so just using "delivery" for now
 // $(document).on('click', '.delivery', function() {
