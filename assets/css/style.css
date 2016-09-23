@@ -1,0 +1,54 @@
+.col-lg-4 {
+	width:250px;
+	height:250px;
+	background-color:red;
+}
+
+#row1, #row3, #row5 {
+	height:40px;
+}
+
+#image1{
+	background-image:url("../images/italian.jpg");
+	background-size:100% 100%;
+}
+
+#image2{
+	background-image:url("../images/asian.jpg");
+	background-size:100% 100%;
+}
+
+#image3{
+	background-image:url("../images/dessert.jpeg");
+	background-size:100% 100%;
+}
+
+#image4{
+	background-image:url("../images/mexican.jpg");
+	background-size:100% 100%;
+}
+
+#image5{
+	background-image:url("../images/pizza.jpg");
+	background-size:100% 100%;
+}
+
+#image6{
+	background-image:url("../images/sushi.jpg");
+	background-size:100% 100%;
+}
+
+#image7{
+	background-image:url("../images/breakfast.jpg");
+	background-size:100% 100%;
+}
+
+#image8{
+	background-image:url("../images/american.jpg");
+	background-size:100% 100%;
+}
+
+#image9{
+	background-image:url("../images/bars.jpg");
+	background-size:100% 100%;
+}
