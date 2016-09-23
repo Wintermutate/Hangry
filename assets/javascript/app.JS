@@ -6,7 +6,6 @@
 // var cuisine = $(this).data('food');
 // console.log(cuisine);
 
-
 // });
 
 
@@ -15,6 +14,9 @@
 
 // var cash = $(this).attr('data-money');
 // console.log(cash);
+//  });
+
+
 $(document).ready(function(){
 // Intialize global variables. 
 var selectFood = false; 
@@ -61,7 +63,7 @@ else
 // });
 
 
-// event listener for the last click --  not sure what the final delivery step's  ID will be,  so just using "delivery" for now
+// event listener for the last click --  not sure what the final  step's  ID will be,  so just using "Method" for now
 // $(document).on('click', '.delivery', function() {
 
 // 	var delivery = $(this).attr('data-delivery');
@@ -77,5 +79,31 @@ else
 
 //     });
 
-});    
+
+        // var results = response.data;
+
+        // for (var i = 0; i < results.length; i++)
+        // {
+        //   var resultDiv = $('<div>');
+
+        //   var name = results.businesses[i].name;
+
+        //   var p = $('<p>').text(name);
+
+        // 	 var a = $('<a>');
+
+       	//   a.attr('href' , results.businesses[i].url); 
+
+        //   var showImage = $('<img>');
+        //   showImage.attr('src' , results.businesses[i].image_url);
+        // 	 a.append(showImage);
+        //   resultDiv.append(p);
+        //   resultDiv.append(a);
+
+
+        //   // place the results into the resultDiv
+        //   $('element id of the html element').prepend(resultDiv);
+        // }
+
+  
 
