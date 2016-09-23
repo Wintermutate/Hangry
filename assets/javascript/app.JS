@@ -23,7 +23,7 @@ var selectMoney = false;
 var selectMethod = false; 
 var chosenFoods = [];
 
-function renderImages(){
+function renderImages(selectFood, selectMoney, selectMethod){
 
 if (selectFood = false && selectMoney = false && selectMethod = false){
 
@@ -65,13 +65,14 @@ $("#foodSelect").on("click",function(){
 	});
 	
 	} else if (selectFood = true && selectMoney = true && selectMethod= false){
+		
 		selectMethod = true; 
 
 
 	
 }		
-};
-};
+}
+
 
 renderImages();
 
