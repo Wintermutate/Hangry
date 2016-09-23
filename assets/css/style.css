@@ -1,54 +1,53 @@
-.col-lg-4 {
-	width:250px;
-	height:250px;
-	background-color:red;
+img {
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
+    margin-bottom:20px;
 }
 
-#row1, #row3, #row5 {
-	height:40px;
+img:hover {
+  filter: none; /* IE6-9 */
+  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+ }
+body {
+	background-color:black;
 }
 
-#image1{
-	background-image:url("../images/italian.jpg");
-	background-size:100% 100%;
+#poor {
+	background-image:url("../images/poor.gif");
+	background-size: 100% 100%;
 }
 
-#image2{
-	background-image:url("../images/asian.jpg");
-	background-size:100% 100%;
+#rich {
+	background-image:url("../images/rich.gif");
+	background-size: 100% 100%;
 }
 
-#image3{
-	background-image:url("../images/dessert.jpeg");
-	background-size:100% 100%;
+#poor, #rich {
+	height:400px;
 }
 
-#image4{
-	background-image:url("../images/mexican.jpg");
-	background-size:100% 100%;
+#row2, #row5, #row6, #row10 {
+	height:50px;
 }
 
-#image5{
-	background-image:url("../images/pizza.jpg");
-	background-size:100% 100%;
+#walk {
+	background-image:url("../images/walk.gif");
+	background-size: 100% 100%;
 }
 
-#image6{
-	background-image:url("../images/sushi.jpg");
-	background-size:100% 100%;
+#drive {
+	background-image:url("../images/drive.gif");
+	background-size: 100% 100%;
 }
 
-#image7{
-	background-image:url("../images/breakfast.jpg");
-	background-size:100% 100%;
+#deliver {
+	background-image:url("../images/delivery.gif");
+	background-size: 100% 100%;
 }
 
-#image8{
-	background-image:url("../images/american.jpg");
-	background-size:100% 100%;
-}
-
-#image9{
-	background-image:url("../images/bars.jpg");
-	background-size:100% 100%;
+#walk, #drive, #deliver {
+	height:300px;
 }
