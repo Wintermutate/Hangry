@@ -1,5 +1,3 @@
-// var queryURL = "https://api.yelp.com/v3/businesses/search?term=" + cuisine + "&latitude=40.4941043&longitude=-74.440837&pricing_filter=" + cash + "&limit=10";
-
 $(document).ready(function(){
 
 // Initialize global variables. 
@@ -10,6 +8,8 @@ var chosenFoods = [];
 var selectedFoods = "";
 var selectedMoney = "";
 var selectedMethod = "";
+var lat = "";
+var long = "";
 
 function renderImages(selectFood, selectMoney, selectMethod){
 
@@ -18,7 +18,7 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		console.log(selectFood);
 		selectFood = true;
 		selectedFoods = chosenFoods.join("&");
-		// console.log(selectedFoods);
+		console.log(selectedFoods);
 		$("#row1").css("display","none");
 		$("#row2").css("display","none");
 		$("#row3").css("display","block");
@@ -55,6 +55,9 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		selectMoney = true; 
 		selectedMoney = "4&";
 		console.log(selectedMoney);
+		var queryURL = "https://api.yelp.com/v3/businesses/search?term=" + selectedFoods + "&latitude=40.4941043&longitude=-74.440837&pricing_filter=" + selectedMoney + "limit=10";
+		console.log(queryURL);
+		// Query URL needs to be updated with latitude and longitude witihin link
 		$("#row2").css("display","none");
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
