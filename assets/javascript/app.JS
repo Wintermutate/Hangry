@@ -1,5 +1,3 @@
-// var queryURL = "https://api.yelp.com/v3/businesses/search?term=" + cuisine + "&latitude=40.4941043&longitude=-74.440837&pricing_filter=" + cash + "&limit=10";
-
 $(document).ready(function(){
 
 // Initialize global variables. 
@@ -10,6 +8,9 @@ var chosenFoods = [];
 var selectedFoods = "";
 var selectedMoney = "";
 var selectedMethod = "";
+var userLat = "";
+var userLong = "";
+
 
 function renderImages(selectFood, selectMoney, selectMethod){
 
@@ -40,7 +41,6 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
 		$("#row5").css("display","none");
-		// $("#row6").css("display","block");
 		$("#row7").css("display","block");
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
@@ -59,7 +59,6 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
 		$("#row5").css("display","none");
-		// $("#row6").css("display","block");
 		$("#row7").css("display","block");
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
