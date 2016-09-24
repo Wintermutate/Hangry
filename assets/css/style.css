@@ -34,14 +34,19 @@ body {
 }
 
 #poor {
-	background-image:url("../images/poor.gif");
+	background-image:url("../images/demon1.jpg");
 	background-size: 100% 100%;
 }
 
 #rich {
-	background-image:url("../images/rich.gif");
+	background-image:url("../images/demonwoman1.jpg");
 	background-size: 100% 100%;
 }
+
+#row3, #row4 {
+	height:380px;
+}
+
 
 #poor, #rich {
 	height:380px;
@@ -71,14 +76,15 @@ body {
 }
 
 #walk, #drive, #deliver {
-	height:300px;
+	height:250px;
 	border-style:ridge;
     border-width:5px;
     border-color:white;
+    margin-bottom:30px;
 }
 
 #spacefiller1 {
-	height:50px;
+	height:150px;
 }
 
 .btn-danger {
@@ -94,7 +100,7 @@ body {
 }
 
 #spacefiller2 {
-	height:10px;
+	height:50px;
 }
 
 #spacefiller3 {
