@@ -24,7 +24,10 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		$("#row3").css("display","block");
 		$("#row4").css("display","block");
 		$("#row5").css("display","block");
-	}});	
+		$("#spacefiller2").css("display","block");
+		$("#wannaspend").css("display","block");
+	}
+	});	
    
 	$("#poor").on("click", function(){
 		if (selectFood == true && selectMoney == false && selectMethod == false) {
@@ -37,11 +40,14 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
 		$("#row5").css("display","none");
-		$("#row6").css("display","block");
+		// $("#row6").css("display","block");
 		$("#row7").css("display","block");
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
 		$("#row10").css("display","block");
+		$("#spacefiller3").css("display","none");
+		$("#spacefiller4").css("display","block");
+		$("#spacefiller5").css("display","block");
 	}});
 	
 	$("#rich").on("click", function(){
@@ -53,11 +59,14 @@ function renderImages(selectFood, selectMoney, selectMethod){
 		$("#row3").css("display","none");
 		$("#row4").css("display","none");
 		$("#row5").css("display","none");
-		$("#row6").css("display","block");
+		// $("#row6").css("display","block");
 		$("#row7").css("display","block");
 		$("#row8").css("display","block");
 		$("#row9").css("display","block");
 		$("#row10").css("display","block");	
+		$("#spacefiller3").css("display","none");
+		$("#spacefiller4").css("display","block");
+		$("#spacefiller5").css("display","block");
 	}});
  
 }
@@ -65,10 +74,13 @@ function renderImages(selectFood, selectMoney, selectMethod){
  $(".cuisine").on("click", function(){
  	
  	if ($(this).hasClass("selected")){
+
  	$(this).addClass("deselected");
  	$(this).removeClass("selected");
  	var food = $(this).data("food");
+
  	for (i = 0; i<chosenFoods.length; i++){
+
  		if (chosenFoods[i] == food){
  			chosenFoods.splice(i, 1);
  			// console.log(chosenFoods);
@@ -82,10 +94,14 @@ function renderImages(selectFood, selectMoney, selectMethod){
  	chosenFoods.push(food);
  	// console.log(chosenFoods);
  }
+
 });
 
 
 renderImages(selectFood, selectMoney, selectMethod);
+
+});
+
 
 // event listener for the last click --  not sure what the final  step's  ID will be,  so just using "Method" for now
 // $(document).on('click', '.delivery', function() {
