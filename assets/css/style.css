@@ -15,6 +15,7 @@ img:hover {
 .selected {
 	filter: none; /* IE6-9 */
   -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+  margin-bottom:20px;
 }
 body {
 	background-color:black;
