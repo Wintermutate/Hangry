@@ -6,125 +6,186 @@ var selectMoney = false;
 var selectMethod = false; 
 var chosenFoods = [];
 var selectedFoods = "";
-var selectedMoney = "";
+var maxprice = "";
 var selectedMethod = "";
 var lat = "";
 var long = "";
 
-function renderImages(selectFood, selectMoney, selectMethod){
+	function renderImages(selectFood, selectMoney, selectMethod){
 
-	$("#foodSelect").on("click",function(){
-		if (selectFood == false && selectMoney == false && selectMethod == false){
-		console.log(selectFood);
-		selectFood = true;
-		selectedFoods = chosenFoods.join("&");
-		console.log(selectedFoods);
-		$("#row1").css("display","none");
-		$("#row2").css("display","none");
-		$("#row3").css("display","block");
-		$("#row4").css("display","block");
-		$("#row5").css("display","block");
-		$("#spacefiller1").css("display","none");
-		$("#spacefiller2").css("display","block");
-		$("#spacefiller3").css("display","block");
-		// $("#wannaspend").css("display","block");
-	}
-	});	
+		$(".cuisine").on("click", function(){
+ 	
+ 			if ($(this).hasClass("selected")){
+
+		 		$(this).addClass("deselected");
+		 		$(this).removeClass("selected");
+		 		var food = $(this).data("food");
+
+ 				for (i = 0; i<chosenFoods.length; i++){
+
+ 					if (chosenFoods[i] == food){
+ 					chosenFoods.splice(i, 1);
+ 					console.log(chosenFoods);
+ 					}
+  				};
+ 			
+ 			}else if ($(this).hasClass("deselected")){
+ 	
+			 	$(this).addClass("selected");
+			 	$(this).removeClass("deselected");
+			 	var food = $(this).data("food");
+			 	chosenFoods.push(food);
+			 	console.log(chosenFoods);
+ 			};
+ 	
+ 		});
+ 			
+
+		$("#foodSelect").on("click",function(){
+			if (selectFood == false && selectMoney == false && selectMethod == false){
+			console.log(selectFood);
+			selectFood = true;
+			selectedFoods = chosenFoods.join("|");
+			console.log(selectedFoods);
+			$("#row1").css("display","none");
+			$("#row2").css("display","none");
+			$("#row3").css("display","block");
+			$("#row4").css("display","block");
+			$("#row5").css("display","block");
+			$("#spacefiller1").css("display","none");
+			$("#spacefiller2").css("display","block");
+			$("#spacefiller3").css("display","block");
+			// $("#wannaspend").css("display","block");
+		}});	
    
-	$("#poor").on("click", function(){
-		if (selectFood == true && selectMoney == false && selectMethod == false) {
-		console.log(selectMoney);
-		selectMoney = true;
-		selectedMoney = "1&";
-		console.log(selectedMoney);
-		$("#row1").css("display","none");
-		$("#row2").css("display","none");
-		$("#row3").css("display","none");
-		$("#row4").css("display","none");
-		$("#row5").css("display","none");
-		// $("#row6").css("display","block");
-		$("#row7").css("display","block");
-		$("#row8").css("display","block");
-		$("#row9").css("display","block");
-		// $("#row10").css("display","block");
-		$("#spacefiller3").css("display","none");
-		$("#spacefiller4").css("display","block");
-		$("#spacefiller5").css("display","block");
-		// $("#wannaspend").css("display","none");
-	}});
+
+		$("#poor").on("click", function(){
+			if (selectFood == true && selectMoney == false && selectMethod == false) {
+			console.log(selectMoney);
+			selectMoney = true;
+			maxprice = "2";
+			console.log(maxprice);
+			$("#row1").css("display","none");
+			$("#row2").css("display","none");
+			$("#row3").css("display","none");
+			$("#row4").css("display","none");
+			$("#row5").css("display","none");
+			// $("#row6").css("display","block");
+			$("#row7").css("display","block");
+			$("#row8").css("display","block");
+			$("#row9").css("display","block");
+			// $("#row10").css("display","block");
+			$("#spacefiller3").css("display","none");
+			$("#spacefiller4").css("display","block");
+			$("#spacefiller5").css("display","block");
+			// $("#wannaspend").css("display","none");
+		}});
 	
-	$("#rich").on("click", function(){
-		if (selectFood == true && selectMoney == false && selectMethod == false) {
-		selectMoney = true; 
-		selectedMoney = "4&";
-		console.log(selectedMoney);
-		var queryURL = "https://api.yelp.com/v3/businesses/search?term=" + selectedFoods + "&latitude=40.4941043&longitude=-74.440837&pricing_filter=" + selectedMoney + "limit=10";
-		console.log(queryURL);
-		// Query URL needs to be updated with latitude and longitude witihin link
-		$("#row2").css("display","none");
-		$("#row3").css("display","none");
-		$("#row4").css("display","none");
-		$("#row5").css("display","none");
-		// $("#row6").css("display","block");
-		$("#row7").css("display","block");
-		$("#row8").css("display","block");
-		$("#row9").css("display","block");
-		// $("#row10").css("display","block");	
-		$("#spacefiller3").css("display","none");
-		$("#spacefiller4").css("display","block");
-		$("#spacefiller5").css("display","block");
-		// $("#wannaspend").css("display","none");
-	}});
+		$("#rich").on("click", function(){
+			if (selectFood == true && selectMoney == false && selectMethod == false) {
+			selectMoney = true; 
+			maxprice = "4";
+			console.log(maxprice);
+		
+			// removed query URL from here --  will place it in the function following last click
+			
+			$("#row2").css("display","none");
+			$("#row3").css("display","none");
+			$("#row4").css("display","none");
+			$("#row5").css("display","none");
+			// $("#row6").css("display","block");
+			$("#row7").css("display","block");
+			$("#row8").css("display","block");
+			$("#row9").css("display","block");
+			// $("#row10").css("display","block");	
+			$("#spacefiller3").css("display","none");
+			$("#spacefiller4").css("display","block");
+			$("#spacefiller5").css("display","block");
+			// $("#wannaspend").css("display","none");
+		}});
  
-}
 
- $(".cuisine").on("click", function(){
- 	
- 	if ($(this).hasClass("selected")){
+		$("#walk").on("click", function () {
+			if (selectFood == true && selectMoney == true && selectMethod == false) {
+			selectMethod = true; 
+			method = "walk";
+			console.log(method);
+			// need to figure out what the next page of html is -- and put JS here to alter page
+		}});
 
- 	$(this).addClass("deselected");
- 	$(this).removeClass("selected");
- 	var food = $(this).data("food");
+		$("#drive").on("click", function () {
+			if (selectFood == true && selectMoney == true && selectMethod == false) {
+			selectMethod = true; 
+			method = "drive";
+			console.log(method);
+			// need to figure out what the next page of html is -- and put JS here to alter page
+		}});
 
- 	for (i = 0; i<chosenFoods.length; i++){
+		$("#deliver").on("click", function () {
+			if (selectFood == true && selectMoney == true && selectMethod == false) {
+			selectMethod = true; 
+			method = " delivery";
+			console.log(method);
+			// need to figure out what the next page of html is -- and put JS here to alter page
+		}});
 
- 		if (chosenFoods[i] == food){
- 			chosenFoods.splice(i, 1);
- 			// console.log(chosenFoods);
- 		}
-  	}
- }else if ($(this).hasClass("deselected")){
- 	
- 	$(this).addClass("selected");
- 	$(this).removeClass("deselected");
- 	var food = $(this).data("food");
- 	chosenFoods.push(food);
- 	// console.log(chosenFoods);
- }
-
-});
+	};	
 
 
 renderImages(selectFood, selectMoney, selectMethod);
 
+
+
+
+
+
+	// event listener for the last click --  not sure what the final  step's  ID will be,  so just using "search" for now
+	$(document).on('click', '#deliver', function() {
+
+		console.log("ajax function running");
+
+		var key = "AIzaSyBT6QkrwpTvY-eL3nEQEkYnMdlO8HmYnBI";
+
+		// need Rick's help getting the user location and storing in these variables
+		var latitude = 40.5342742;
+		
+	  	var longitude = -74.5224469;
+
+	  	var location = latitude+","+longitude;
+	  	console.log(location);
+
+	  	var radius = 0;
+  	
+	  	if (method=="walk"){
+	  		radius=1000};
+
+	  	if (method=="drive"){
+	  		radius=3000};
+
+	  	if (method==" delivery"){
+	  		radius=5000;
+	  		var keyword = selectedFoods.concat(method);
+	  		}else{keyword=selectedFoods};
+	  	
+	  	console.log(keyword);
+
+	  	var queryURL = "https://crossorigin.me/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+location+"&radius="+radius+"&type=restaurant&keyword="+selectedFoods+"&maxprice="+maxprice+"&key="+key;
+	    console.log(queryURL);
+
+
+		$.ajax({
+	    url: queryURL,
+	    method: 'GET',
+	    success: function(response){ console.log(response) }
+
+	    // in the function above,  we will push the appropriate results into the html
+
+	    });
+
+	});    
+
 });
 
-
-// event listener for the last click --  not sure what the final  step's  ID will be,  so just using "Method" for now
-// $(document).on('click', '.delivery', function() {
-
-// 	var delivery = $(this).attr('data-delivery');
-// 	console.log(delivery);
-
-// 	$.ajax({
-//     url: queryURL,
-//     method: 'GET',
-//     beforeSend: function(xhr, settings){xhr.setRequestHeader('Authorization', 'Bearer ' + '5QK1RYBT8c1P7pmcJPzib0mhe7pfVIw0SnkQribQ4i2RaxTnh0_hMrUdnktGPxNf6qZsEXzfbBQz-hT_erdvPyWLIws5g6mYaJLJsyqcSNnOOL-dRCzpBO800lvkV3Yx');},
-//     success: function(response){ console.log(response) }
-
-//     // in the function above,  we will push the appropriate results into the html
-
-//     });
 
 
         // var results = response.data;
