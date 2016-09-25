@@ -24,11 +24,13 @@ var long = "";
 			$("#row3").css("display","block");
 			$("#row4").css("display","block");
 			$("#row5").css("display","block");
+			$("#row6").css("display","block");
 			$("#spacefiller1").css("display","none");
 			$("#spacefiller2").css("display","block");
 			$("#spacefiller3").css("display","block");
 			// $("#wannaspend").css("display","block");
-		}});	
+		}
+		});	
    
 
 		$("#poor").on("click", function(){
@@ -41,40 +43,42 @@ var long = "";
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
-			$("#row5").css("display","none");
-			// $("#row6").css("display","block");
+			$("#row5").css("display","block");
+			$("#row6").css("display","block");
 			$("#row7").css("display","block");
 			$("#row8").css("display","block");
 			$("#row9").css("display","block");
-			// $("#row10").css("display","block");
+			$("#row10").css("display", "none");
+			$("#spacefiller2").css("display","none");
 			$("#spacefiller3").css("display","none");
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
-		}});
+		}
+		});
 	
 		$("#rich").on("click", function(){
 			if (selectFood == true && selectMoney == false && selectMethod == false) {
 			selectMoney = true; 
 			maxprice = "4";
 			console.log(maxprice);
-		
-			// removed query URL from here --  will place it in the function following last click
-			
+					
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
-			$("#row5").css("display","none");
-			// $("#row6").css("display","block");
+			$("#row5").css("display","block");
+			$("#row6").css("display","block");
 			$("#row7").css("display","block");
 			$("#row8").css("display","block");
 			$("#row9").css("display","block");
-			// $("#row10").css("display","block");	
+			$("#row10").css("display", "none");
+			$("#spacefiller2").css("display","none");
 			$("#spacefiller3").css("display","none");
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
-		}});
+		}
+		});
  
 
 		$(".method").on("click", function () {
@@ -82,23 +86,23 @@ var long = "";
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
+			$("row1").css("display", "none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
-			$("#row5").css("display","none");
-			// $("#row6").css("display","block");
+			$("#row5").css("display","block");
+			$("#row6").css("display","block");
 			$("#row7").css("display","none");
 			$("#row8").css("display","none");
 			$("#row9").css("display","none");
-			// $("#row10").css("display","block");	
 			$("#spacefiller3").css("display","none");
 			$("#spacefiller4").css("display","none");
 			$("#spacefiller5").css("display","none");
 			// $("#wannaspend").css("display","none");
 			$("#row10").css("display", "block");
-			// need to figure out what the next page of html is -- and put JS here to alter page
+			
 		}
-	});
+		});
 
 	};	
 
@@ -130,7 +134,50 @@ var long = "";
  			};
  	
  		});
- 			
+ 	
+
+ 	$("#reset").on('click', function(){
+ 		
+ 		
+ 	if (!selectFood || !selectMoney || !selectMethod){	
+ 		
+ 		selectFood = false;
+ 		selectMoney = false;
+ 		selectMethod = false;
+ 		
+ 		// console.log(selectFood);
+ 		// console.log(selectMoney);
+ 		// console.log(selectMethod);
+
+ 		$("#row1").css("display","block");
+ 		$("#row2").css("display","block");
+		$("#row3").css("display","none");
+		$("#row4").css("display","none");
+		$("#row5").css("display","block");
+		$("#row6").css("display","block");
+		$("#row7").css("display","none");
+		$("#row8").css("display","none");
+		$("#row9").css("display","none");
+		$("#row10").css("display", "none");
+		$("#spacefiller1").css("display","block");
+		$("#spacefiller2").css("display","none");
+		$("#spacefiller3").css("display","none");
+		$("#spacefiller4").css("display","none");
+		$("#spacefiller5").css("display","none"); 
+
+ 		// console.log("RESET!");
+
+ 		renderImages(selectFood, selectMoney, selectMethod);
+
+ 		// console.log("function fired!")
+ 	}
+ 	});		
+ 	
+ 	$('#back').on('click', function(){
+
+ 		console.log("back");
+ 	
+ 	});
 
 renderImages(selectFood, selectMoney, selectMethod);
 
@@ -160,23 +207,50 @@ renderImages(selectFood, selectMoney, selectMethod);
 	  	if (selectedMethod=="drive"){
 	  		radius=3000};
 
-	  	if (selectedMethod==" delivery"){
+	  	if (selectedMethod=="delivery"){
 	  		radius=5000;
-	  		var keyword = selectedFoods.concat(selectedMethod);
+	  		var keyword = selectedFoods.concat("|" + selectedMethod);
 	  		}else{keyword=selectedFoods};
 	  	
 	  	console.log(keyword);
 
-	  	var queryURL = "https://crossorigin.me/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+location+"&radius="+radius+"&type=restaurant&keyword="+selectedFoods+"&maxprice="+maxprice+"&key="+key;
+	  	var queryURL = "https://crossorigin.me/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+location+"&radius="+radius+"&type=restaurant&keyword="+ keyword +"&maxprice="+maxprice+"&key="+key;
 	    console.log(queryURL);
 
 
 		$.ajax({
 	    url: queryURL,
 	    method: 'GET',
-	    success: function(response){ console.log(response) }
+	    success: function(response){ 
+	    	console.log(response);
+	    $('.results').empty();
+	    	var results = response.results;
 
-	    // in the function above,  we will push the appropriate results into the html
+        for (var i = 0; i < results.length; i++){     
+        
+          var resultDiv = $('<div>');
+
+          var name = results[i].name;
+
+          var p = $('<p>').text(name);
+          if (results[i].hasOwnProperty("photos")){
+          	// console.log(results[i].photos[0].html_attributions[0]);
+
+          	p.append(results[i].photos[0].html_attributions[0]);
+
+          }
+          if (results[i].types[0] == "meal_delivery"){
+          	p.append(" We Deliver");
+          }
+          resultDiv.append(p);
+         
+          // place the results into the resultDiv
+          $('.results').append(resultDiv);
+        }
+
+	   }
+
+	    
 
 	    });
 
@@ -186,30 +260,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 
-        // var results = response.data;
-
-        // for (var i = 0; i < results.length; i++)
-        // {
-        //   var resultDiv = $('<div>');
-
-        //   var name = results.businesses[i].name;
-
-        //   var p = $('<p>').text(name);
-
-        // 	 var a = $('<a>');
-
-       	//   a.attr('href' , results.businesses[i].url); 
-
-        //   var showImage = $('<img>');
-        //   showImage.attr('src' , results.businesses[i].image_url);
-        // 	 a.append(showImage);
-        //   resultDiv.append(p);
-        //   resultDiv.append(a);
-
-
-        //   // place the results into the resultDiv
-        //   $('element id of the html element').prepend(resultDiv);
-        // }
+        
 
   
 
