@@ -13,34 +13,6 @@ var long = "";
 
 	function renderImages(selectFood, selectMoney, selectMethod){
 
-		$(".cuisine").on("click", function(){
- 	
- 			if ($(this).hasClass("selected")){
-
-		 		$(this).addClass("deselected");
-		 		$(this).removeClass("selected");
-		 		var food = $(this).data("food");
-
- 				for (i = 0; i<chosenFoods.length; i++){
-
- 					if (chosenFoods[i] == food){
- 					chosenFoods.splice(i, 1);
- 					console.log(chosenFoods);
- 					}
-  				};
- 			
- 			}else if ($(this).hasClass("deselected")){
- 	
-			 	$(this).addClass("selected");
-			 	$(this).removeClass("deselected");
-			 	var food = $(this).data("food");
-			 	chosenFoods.push(food);
-			 	console.log(chosenFoods);
- 			};
- 	
- 		});
- 			
-
 		$("#foodSelect").on("click",function(){
 			if (selectFood == false && selectMoney == false && selectMethod == false){
 			console.log(selectFood);
@@ -105,42 +77,68 @@ var long = "";
 		}});
  
 
-		$("#walk").on("click", function () {
+		$(".method").on("click", function () {
 			if (selectFood == true && selectMoney == true && selectMethod == false) {
 			selectMethod = true; 
-			method = "walk";
-			console.log(method);
+			selectedMethod = ($(this).data('method'));
+			console.log(selectedMethod);
+			$("#row2").css("display","none");
+			$("#row3").css("display","none");
+			$("#row4").css("display","none");
+			$("#row5").css("display","none");
+			// $("#row6").css("display","block");
+			$("#row7").css("display","none");
+			$("#row8").css("display","none");
+			$("#row9").css("display","none");
+			// $("#row10").css("display","block");	
+			$("#spacefiller3").css("display","none");
+			$("#spacefiller4").css("display","none");
+			$("#spacefiller5").css("display","none");
+			// $("#wannaspend").css("display","none");
+			$("#row10").css("display", "block");
 			// need to figure out what the next page of html is -- and put JS here to alter page
-		}});
-
-		$("#drive").on("click", function () {
-			if (selectFood == true && selectMoney == true && selectMethod == false) {
-			selectMethod = true; 
-			method = "drive";
-			console.log(method);
-			// need to figure out what the next page of html is -- and put JS here to alter page
-		}});
-
-		$("#deliver").on("click", function () {
-			if (selectFood == true && selectMoney == true && selectMethod == false) {
-			selectMethod = true; 
-			method = " delivery";
-			console.log(method);
-			// need to figure out what the next page of html is -- and put JS here to alter page
-		}});
+		}
+	});
 
 	};	
 
+
+
+	$(".cuisine").on("click", function(){
+ 	
+ 			if ($(this).hasClass("selected")){
+
+		 		$(this).addClass("deselected");
+		 		$(this).removeClass("selected");
+		 		var food = $(this).data("food");
+
+ 				for (i = 0; i<chosenFoods.length; i++){
+
+ 					if (chosenFoods[i] == food){
+ 					chosenFoods.splice(i, 1);
+ 					console.log(chosenFoods);
+ 					}
+  				};
+ 			
+ 			}else if ($(this).hasClass("deselected")){
+ 	
+			 	$(this).addClass("selected");
+			 	$(this).removeClass("deselected");
+			 	var food = $(this).data("food");
+			 	chosenFoods.push(food);
+			 	console.log(chosenFoods);
+ 			};
+ 	
+ 		});
+ 			
 
 renderImages(selectFood, selectMoney, selectMethod);
 
 
 
 
-
-
 	// event listener for the last click --  not sure what the final  step's  ID will be,  so just using "search" for now
-	$(document).on('click', '#deliver', function() {
+	$(document).on('click', '.method', function() {
 
 		console.log("ajax function running");
 
@@ -156,15 +154,15 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 	  	var radius = 0;
   	
-	  	if (method=="walk"){
+	  	if (selectedMethod=="walk"){
 	  		radius=1000};
 
-	  	if (method=="drive"){
+	  	if (selectedMethod=="drive"){
 	  		radius=3000};
 
-	  	if (method==" delivery"){
+	  	if (selectedMethod==" delivery"){
 	  		radius=5000;
-	  		var keyword = selectedFoods.concat(method);
+	  		var keyword = selectedFoods.concat(selectedMethod);
 	  		}else{keyword=selectedFoods};
 	  	
 	  	console.log(keyword);
