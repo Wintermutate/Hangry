@@ -13,16 +13,6 @@ var long = "";
 
 	function renderImages(selectFood, selectMoney, selectMethod){
 
-
-
-		
-
-
-
-
-
-
-
 		$("#foodSelect").on("click",function(){
 			if (selectFood == false && selectMoney == false && selectMethod == false){
 			console.log(selectFood);
@@ -55,7 +45,7 @@ var long = "";
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
-			$("#row5").css("display","block");
+			$("#row5").css("display","none");
 			$("#row6").css("display","block");
 			$("#row7").css("display","block");
 			$("#row8").css("display","block");
@@ -78,7 +68,7 @@ var long = "";
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
-			$("#row5").css("display","block");
+			$("#row5").css("display","none");
 			$("#row6").css("display","block");
 			$("#row7").css("display","block");
 			$("#row8").css("display","block");
@@ -219,7 +209,7 @@ renderImages(selectFood, selectMoney, selectMethod);
           if (results[i].hasOwnProperty("photos")){
           	// console.log(results[i].photos[0].html_attributions[0]);
 
-          	p.append(results[i].photos[0].html_attributions[0]);
+          	p.append(" " + results[i].photos[0].html_attributions[0]);
 
           }
           if (results[i].types[0] == "meal_delivery"){
