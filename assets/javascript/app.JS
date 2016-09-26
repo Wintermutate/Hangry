@@ -13,6 +13,16 @@ var long = "";
 
 	function renderImages(selectFood, selectMoney, selectMethod){
 
+
+
+		
+
+
+
+
+
+
+
 		$("#foodSelect").on("click",function(){
 			if (selectFood == false && selectMoney == false && selectMethod == false){
 			console.log(selectFood);
@@ -28,7 +38,9 @@ var long = "";
 			$("#spacefiller1").css("display","none");
 			$("#spacefiller2").css("display","block");
 			$("#spacefiller3").css("display","block");
-			// $("#wannaspend").css("display","block");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+
 		}
 		});	
    
@@ -136,42 +148,13 @@ var long = "";
  		});
  	
 
- 	$("#reset").on('click', function(){
+ 	$("#reset").on('click', function(){		
  		
- 		
- 	if (!selectFood || !selectMoney || !selectMethod){	
- 		
- 		selectFood = false;
- 		selectMoney = false;
- 		selectMethod = false;
- 		
- 		// console.log(selectFood);
- 		// console.log(selectMoney);
- 		// console.log(selectMethod);
-
- 		$("#row1").css("display","block");
- 		$("#row2").css("display","block");
-		$("#row3").css("display","none");
-		$("#row4").css("display","none");
-		$("#row5").css("display","block");
-		$("#row6").css("display","block");
-		$("#row7").css("display","none");
-		$("#row8").css("display","none");
-		$("#row9").css("display","none");
-		$("#row10").css("display", "none");
-		$("#spacefiller1").css("display","block");
-		$("#spacefiller2").css("display","none");
-		$("#spacefiller3").css("display","none");
-		$("#spacefiller4").css("display","none");
-		$("#spacefiller5").css("display","none"); 
-
- 		// console.log("RESET!");
-
- 		renderImages(selectFood, selectMoney, selectMethod);
-
- 		// console.log("function fired!")
- 	}
+ 	window.location.reload(true);
+ 	
  	});		
+
+
  	
  	$('#back').on('click', function(){
 

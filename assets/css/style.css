@@ -20,36 +20,33 @@ img:hover {
 .selected {
 	filter: none; /* IE6-9 */
   -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
-  margin-bottom:20px;
-  /*added by Ben*/
- 	 border-style:ridge;
+  	margin-bottom:20px;
+ 	border-style:ridge;
     border-width:5px;
     border-color:red;
-/*added by Ben*/
 }
 body {
 	background-color:black;
 	background-image:url("../images/background1.jpg");
-	background-size: 100% 100%;
 }
 
 #poor {
-	background-image:url("../images/demon1.jpg");
+	background-image:url("../images/poor.jpg");
 	background-size: 100% 100%;
 }
 
 #rich {
-	background-image:url("../images/demonwoman1.jpg");
+	background-image:url("../images/rich.jpg");
 	background-size: 100% 100%;
 }
 
 #row3, #row4 {
-	height:380px;
+	height:290px;
 }
 
 
 #poor, #rich {
-	height:380px;
+	height:290px;
 	border-style:ridge;
     border-width:5px;
     border-color:white;
@@ -60,18 +57,22 @@ body {
 	height:50px;
 }
 
+#row2 {
+	margin-top:60px;
+}
+
 #walk {
-	background-image:url("../images/walk.gif");
+	background-image:url("../images/walk.jpg");
 	background-size: 100% 100%;
 }
 
 #drive {
-	background-image:url("../images/drive.gif");
+	background-image:url("../images/drive.jpg");
 	background-size: 100% 100%;
 }
 
 #deliver {
-	background-image:url("../images/delivery.gif");
+	background-image:url("../images/delivery.jpg");
 	background-size: 100% 100%;
 }
 
@@ -84,27 +85,28 @@ body {
 }
 
 #spacefiller1 {
-	height:150px;
+	height:120px;
 }
 
 .btn-danger {
 	width:100%;
 	height:50px;
-	font-size:16px;
+	font-size:20px;
 	font-weight:bold;
 	font-family:arial;
 	background-color:red;
 	border-style:solid;
 	border-color:black;
 	border-width:2px;
+	background-image:url("../images/background2.jpg");
 }
 
 #spacefiller2 {
-	height:50px;
+	height:150px;
 }
 
 #spacefiller3 {
-	height:70px;
+	height:100px;
 }
 
 #wannaspend {
@@ -113,9 +115,35 @@ body {
 	font-family:arial;
 	color:white;
 	text-align:center;
-	padding:23px;
+	padding:38px;
 }
 
 #spacefiller4, #spacefiller5 {
 	height:20px;
+}
+
+.navbar-header {
+	background-image:url("../images/background2.jpg");
+}
+
+h3 {
+	font-size:20px;
+	color:white;
+	font-family: arial;
+	font-weight:bold;
+}
+
+.navbar-fixed-top {
+	background-image:url("../images/background2.jpg");
+	border-bottom-style:solid;
+	border-bottom-color:black;
+	border-bottom-width:2px;
+}
+
+#container1{
+	width:35%;
+}
+
+#row5 {
+	height:100px;
 }
