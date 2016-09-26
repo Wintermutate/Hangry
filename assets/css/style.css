@@ -83,7 +83,7 @@ body {
 	border-style:ridge;
     border-width:5px;
     border-color:white;
-    margin-bottom:30px;
+    margin-bottom:10px;
 }
 
 #spacefiller1 {
@@ -121,7 +121,7 @@ body {
 }
 
 #spacefiller4, #spacefiller5 {
-	height:20px;
+	height:15px;
 }
 
 .navbar-header {
@@ -148,5 +148,5 @@ h3 {
 }
 
 #row6 {
-	height:100px;
+	height:75px;
 }
