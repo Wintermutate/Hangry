@@ -26,6 +26,7 @@ img:hover {
     border-color:red;
 }
 body {
+	color: white;
 	background-color:black;
 	background-image:url("../images/background1.jpg");
 }
