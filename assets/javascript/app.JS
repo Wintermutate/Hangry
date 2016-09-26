@@ -1,3 +1,58 @@
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
+    authDomain: "hangry-e5636.firebaseapp.com",
+    databaseURL: "https://hangry-e5636.firebaseio.com",
+    storageBucket: "hangry-e5636.appspot.com",
+    messagingSenderId: "926964885767"
+  };
+  firebase.initializeApp(config);
+
+	// Variable to reference the database
+	var database = firebase.database();
+
+
+// ****  --  Tried to setup Google sign-in, using redirect.  Redirect is much easier than a manual integration.  --  ***
+
+// ****  --   There is a known problem with the redirect method that throws an unsupported error. A workaround is available but will take significant time to replicate -- ****
+
+
+	// Create sign-in flow using the Firebase SDK
+	var provider = new firebase.auth.GoogleAuthProvider();
+	// adding Google Maps auth.  to scope
+	provider.addScope('https://www.googleapis.com/auth/plus.login');
+
+
+	// User authenticates with Firebase, using Google sign-in.  This method uses a redirect to sign-in page.
+	firebase.auth().signInWithPopup(provider).then(function(result) {
+	  	// This gives you a Google Access Token. You can use it to access the Google API.
+		var token = result.credential.accessToken;
+		// The signed-in user info.
+		var user = result.user;
+		}).catch(function(error) {
+	  		// Handle Errors here.
+	  		var errorCode = error.code;
+	  		var errorMessage = error.message;
+	  		// The email of the user's account used.
+	  		var email = error.email;
+	  		// The firebase.auth.AuthCredential type that was used.
+	  		var credential = error.credential;
+	});
+
+		// event listener for auth. state
+		firebase.auth().onAuthStateChanged(function(user) {
+		  if (user) {
+		    console.log(firebase.auth().currentUser);
+		  } else {
+		    console.log("User is not signed in.");
+		  }
+		});
+
+
+	//  We can include other logins later -- Facebook, Twitter, Github, etc.
+
+
+
 $(document).ready(function(){
 
 // Initialize global variables. 
@@ -6,10 +61,17 @@ var selectMoney = false;
 var selectMethod = false; 
 var chosenFoods = [];
 var selectedFoods = "";
-var maxprice = "";
 var selectedMethod = "";
 var lat = "";
 var long = "";
+
+var search = {
+	location: "",
+	radius: 0,
+	keyword: "",
+	maxprice: "",
+	queryURL: ""
+}
 
 	function renderImages(selectFood, selectMoney, selectMethod){
 
@@ -39,8 +101,8 @@ var long = "";
 			if (selectFood == true && selectMoney == false && selectMethod == false) {
 			console.log(selectMoney);
 			selectMoney = true;
-			maxprice = "2";
-			console.log(maxprice);
+			search.maxprice = "2";
+			console.log(search.maxprice);
 			$("#row1").css("display","none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
@@ -62,8 +124,8 @@ var long = "";
 		$("#rich").on("click", function(){
 			if (selectFood == true && selectMoney == false && selectMethod == false) {
 			selectMoney = true; 
-			maxprice = "4";
-			console.log(maxprice);
+			search.maxprice = "4";
+			console.log(search.maxprice);
 					
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
@@ -160,8 +222,6 @@ renderImages(selectFood, selectMoney, selectMethod);
 	// event listener for the last click --  not sure what the final  step's  ID will be,  so just using "search" for now
 	$(document).on('click', '.method', function() {
 
-		console.log("ajax function running");
-
 		var key = "AIzaSyBT6QkrwpTvY-eL3nEQEkYnMdlO8HmYnBI";
 
 		// need Rick's help getting the user location and storing in these variables
@@ -169,30 +229,31 @@ renderImages(selectFood, selectMoney, selectMethod);
 		
 	  	var longitude = -74.5224469;
 
-	  	var location = latitude+","+longitude;
-	  	console.log(location);
-
-	  	var radius = 0;
+	  	search.location = latitude+","+longitude;
+	  	console.log(search.location);
   	
 	  	if (selectedMethod=="walk"){
-	  		radius=1000};
+	  		search.radius=1000};
 
 	  	if (selectedMethod=="drive"){
-	  		radius=3000};
+	  		search.radius=3000};
 
 	  	if (selectedMethod=="delivery"){
-	  		radius=5000;
-	  		var keyword = selectedFoods.concat("|" + selectedMethod);
-	  		}else{keyword=selectedFoods};
+	  		search.radius=5000;
+	  		search.keyword = selectedFoods.concat("|" + selectedMethod);
+	  		}else{search.keyword=selectedFoods};
 	  	
-	  	console.log(keyword);
+	  	console.log(search.keyword);
 
-	  	var queryURL = "https://crossorigin.me/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+location+"&radius="+radius+"&type=restaurant&keyword="+ keyword +"&maxprice="+maxprice+"&key="+key;
-	    console.log(queryURL);
+	  	search.queryURL = "https://crossorigin.me/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+search.location+"&radius="+search.radius+"&type=restaurant&keyword="+ search.keyword +"&maxprice="+search.maxprice+"&key="+key;
+	    
+	    console.log(search.queryURL);
 
+	    // Save query parameters to Firebase
+		database.ref().push(search);
 
 		$.ajax({
-	    url: queryURL,
+	    url: search.queryURL,
 	    method: 'GET',
 	    success: function(response){ 
 	    	console.log(response);
