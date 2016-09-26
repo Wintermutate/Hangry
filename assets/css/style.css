@@ -27,6 +27,7 @@ img:hover {
 }
 body {
 	color: white;
+	font-family: 'Nunito', sans-serif;`
 	background-color:black;
 	background-image:url("../images/background1.jpg");
 }
@@ -94,7 +95,7 @@ body {
 	height:50px;
 	font-size:20px;
 	font-weight:bold;
-	font-family:arial;
+	font-family: 'Nunito', sans-serif;
 	background-color:red;
 	border-style:solid;
 	border-color:black;
@@ -113,7 +114,7 @@ body {
 #wannaspend {
 	font-size:24px;
 	font-weight:bold;
-	font-family:arial;
+	font-family: 'Nunito', sans-serif;
 	color:white;
 	text-align:center;
 	padding:38px;
@@ -139,6 +140,7 @@ h3 {
 	border-bottom-style:solid;
 	border-bottom-color:black;
 	border-bottom-width:2px;
+	font-family: 'Nunito', sans-serif;
 }
 
 #container1{
