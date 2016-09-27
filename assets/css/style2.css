@@ -1,14 +1,14 @@
 .deselected {
   filter: gray; /* IE6-9 */
-  -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
     -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     margin-bottom:20px;
     /*added by Ben*/
-    border-style:ridge;
+/*    border-style:ridge;
     border-width:5px;
-    border-color:white;
+    border-color:white;*/
     /*added by Ben*/
 }
 
@@ -23,13 +23,15 @@ img:hover {
   	margin-bottom:20px;
  	border-style:ridge;
     border-width:5px;
-    border-color:red;
+    border-color:#006666;
+/*    box-shadow: 10px 10px 5px #006666;*/
 }
+
 body {
 	color: white;
 	font-family: 'Nunito', sans-serif;`
 	background-color:black;
-	background-image:url("../images/background1.jpg");
+	background-image:url("../images/background4.jpg");
 }
 
 #poor {
@@ -96,11 +98,11 @@ body {
 	font-size:20px;
 	font-weight:bold;
 	font-family: 'Nunito', sans-serif;
-	background-color:red;
+	background-color:#006666;
 	border-style:solid;
 	border-color:black;
 	border-width:2px;
-	background-image:url("../images/background2.jpg");
+/*	background-image:url("../images/background2.jpg");*/
 }
 
 #spacefiller2 {
@@ -125,7 +127,8 @@ body {
 }
 
 .navbar-header {
-	background-image:url("../images/background2.jpg");
+/*	background-image:url("../images/background2.jpg");*/
+background-color:#006666;
 }
 
 h3 {
@@ -136,7 +139,8 @@ h3 {
 }
 
 .navbar-fixed-top {
-	background-image:url("../images/background2.jpg");
+/*	background-image:url("../images/background2.jpg");*/
+	background-color:#006666;
 	border-bottom-style:solid;
 	border-bottom-color:black;
 	border-bottom-width:2px;
@@ -149,4 +153,13 @@ h3 {
 
 #row6 {
 	height:75px;
+}
+
+.fa {
+	color:white;
+}
+
+#back1, #reset1 {
+	color:white;
+	float:right;
 }
