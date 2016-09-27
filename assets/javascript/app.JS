@@ -65,6 +65,14 @@ var selectedMethod = "";
 var lat = "";
 var long = "";
 
+var currentState = "current state: "+ history.state;
+var windowHistory = "window history: "+ window.history;
+var stateObj = { index: "main" };
+console.log(stateObj);
+console.log(currentState);
+console.log(windowHistory);
+console.log(History.length);
+
 var search = {
 	location: "",
 	radius: 0,
@@ -81,6 +89,8 @@ var search = {
 			selectFood = true;
 			selectedFoods = chosenFoods.join("|");
 			console.log(selectedFoods);
+			stateObj = { index: "main" };
+			history.replaceState(stateObj, "page 2", "index.html");
 			$("#row1").css("display","none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","block");
@@ -92,6 +102,10 @@ var search = {
 			$("#spacefiller3").css("display","block");
 			$("#back").css("display","block");
 			$("#reset").css("display","block");
+			console.log(stateObj);
+			console.log(currentState);
+			console.log(windowHistory);
+
 
 		}
 		});	
@@ -100,6 +114,8 @@ var search = {
 		$("#poor").on("click", function(){
 			if (selectFood == true && selectMoney == false && selectMethod == false) {
 			console.log(selectMoney);
+			stateObj = { index: "price" };
+			history.replaceState(stateObj, "page 3", "index.html");
 			selectMoney = true;
 			search.maxprice = "2";
 			console.log(search.maxprice);
@@ -118,6 +134,10 @@ var search = {
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
+			console.log(stateObj);
+			console.log(currentState);
+			console.log(windowHistory);
+
 		}
 		});
 	
@@ -126,7 +146,8 @@ var search = {
 			selectMoney = true; 
 			search.maxprice = "4";
 			console.log(search.maxprice);
-					
+			stateObj = { index: "price" };
+			history.replaceState(stateObj, "page 3", "index.html");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
@@ -141,6 +162,10 @@ var search = {
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
+			console.log(stateObj);
+			console.log(currentState);
+			console.log(windowHistory);
+
 		}
 		});
  
@@ -150,6 +175,8 @@ var search = {
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
+			stateObj = { index: "method" };
+			history.replaceState(stateObj, "page 4", "index.html");
 			$("row1").css("display", "none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
@@ -164,7 +191,10 @@ var search = {
 			$("#spacefiller5").css("display","none");
 			// $("#wannaspend").css("display","none");
 			$("#row10").css("display", "block");
-			
+			console.log(stateObj);
+			console.log(currentState);
+			console.log(windowHistory);
+
 		}
 		});
 
@@ -210,7 +240,7 @@ var search = {
  	
  	$('#back').on('click', function(){
 
- 		console.log("back");
+	window.history.back();
  	
  	});
 
