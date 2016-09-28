@@ -63,6 +63,7 @@ $(document).ready(function(){
 	var selectedMethod = "";
 	var lat = "";
 	var long = "";
+	var page = 1;
 
 	var search = {
 		location: "",
@@ -72,16 +73,20 @@ $(document).ready(function(){
 		queryURL: ""
 	}
 
-	function renderImages(selectFood, selectMoney, selectMethod){
 
-		// Need to insert logic to ensure that this button can only be clicked if at least one food is selected.
-
-		$("#foodSelect").on("click",function(){
-			if (selectFood == false && selectMoney == false && selectMethod == false){
-			console.log(selectFood);
-			selectFood = true;
-			selectedFoods = chosenFoods.join("|");
-			console.log(selectedFoods);
+	function moveToPage (page){
+		switch(page){
+			case 1:
+			// page 1
+			// console.log("going to page 1")
+			$("#row1").css("display","block");
+			$("#row2").css("display","block");
+			$("#spacefiller1a").css("display","block");
+			$("#spacefiller1b").css("display","block");
+			break;
+			case 2:
+			// once food select clicked > goes to "page 2"
+			// console.log("going to page 2")
 			$("#row1").css("display","none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","block");
@@ -95,17 +100,10 @@ $(document).ready(function(){
 			$("#spacefiller3").css("display","block");
 			$("#back").css("display","block");
 			$("#reset").css("display","block");
-
-		}
-		});	
-   
-
-		$("#poor").on("click", function(){
-			if (selectFood == true && selectMoney == false && selectMethod == false) {
-			console.log(selectMoney);
-			selectMoney = true;
-			search.maxprice = "2";
-			console.log(search.maxprice);
+			break;
+			case 3:
+			// once price select clicked > goes to "page 3"
+			// console.log("going to page 3")
 			$("#row1").css("display","none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
@@ -121,15 +119,10 @@ $(document).ready(function(){
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
-		}
-		});
-	
-		$("#rich").on("click", function(){
-			if (selectFood == true && selectMoney == false && selectMethod == false) {
-			selectMoney = true; 
-			search.maxprice = "4";
-			console.log(search.maxprice);
-					
+			break;
+			case 4:
+			// once price select clicked > goes to "page 3"
+			// console.log("going to page 4")
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
@@ -144,16 +137,10 @@ $(document).ready(function(){
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
 			// $("#wannaspend").css("display","none");
-		}
-		});
- 
-
-		$(".method").on("click", function () {
-			if (selectFood == true && selectMoney == true && selectMethod == false) {
-			selectMethod = true; 
-			selectedMethod = ($(this).data('method'));
-			console.log(selectedMethod);
-			$("row1").css("display", "none");
+			break;
+			case 5:
+			// once method select clicked > goes to "results - page 4"
+			$("#row1").css("display", "none");
 			$("#row2").css("display","none");
 			$("#row3").css("display","none");
 			$("#row4").css("display","none");
@@ -167,7 +154,60 @@ $(document).ready(function(){
 			$("#spacefiller5").css("display","none");
 			// $("#wannaspend").css("display","none");
 			$("#row10").css("display", "block");
-			
+		}
+	}
+
+
+	function renderImages(selectFood, selectMoney, selectMethod){
+
+		// Need to insert logic to ensure that this button can only be clicked if at least one food is selected.
+
+		$("#foodSelect").on("click",function(){
+			if (selectFood == false && selectMoney == false && selectMethod == false){
+			console.log(selectFood);
+			selectFood = true;
+			selectedFoods = chosenFoods.join("|");
+			console.log(selectedFoods);
+			moveToPage(2);
+			console.log(moveToPage);
+			page++;
+			console.log(page);
+		}
+		});	
+   
+
+		$("#poor").on("click", function(){
+			if (selectFood == true && selectMoney == false && selectMethod == false) {
+			console.log(selectMoney);
+			selectMoney = true;
+			search.maxprice = "2";
+			console.log(search.maxprice);
+			moveToPage(3);
+			page++;
+			console.log(page);
+		}
+		});
+	
+		$("#rich").on("click", function(){
+			if (selectFood == true && selectMoney == false && selectMethod == false) {
+			selectMoney = true; 
+			search.maxprice = "4";
+			console.log(search.maxprice);
+			moveToPage(4);
+			page++;
+			console.log(page);
+		}
+		});
+ 
+
+		$(".method").on("click", function () {
+			if (selectFood == true && selectMoney == true && selectMethod == false) {
+			selectMethod = true; 
+			selectedMethod = ($(this).data('method'));
+			console.log(selectedMethod);
+			moveToPage(5);
+			page++;
+			console.log(page);
 		}
 		});
 
@@ -212,10 +252,22 @@ $(document).ready(function(){
 
  	
  	$('#back').on('click', function(){
-
- 		console.log("back");
+ 		switch(page){
+			case 1:
+			break;
+			case 2:
+			moveToPage(1);
+			case 3:
+			moveToPage(2);
+			case 4:
+			moveToPage(3);
+		}
+		$("a#back").off().on("click",function(){
+			page--;moveToPage(page)
+		})
+	}
  	
- 	});
+ 	);
 
 
 renderImages(selectFood, selectMoney, selectMethod);
