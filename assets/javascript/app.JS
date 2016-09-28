@@ -101,6 +101,7 @@ $(document).ready(function(){
 			$("#spacefiller1b").css("display","none");
 			$("#spacefiller2").css("display","block");
 			$("#spacefiller3").css("display","block");
+			$("#spacefiller3a").css("display","block");
 			$("#back").css("display","block");
 			$("#reset").css("display","block");
 
