@@ -107,7 +107,7 @@ $(document).ready(function(){
              lat: position.coords.latitude,
              lng: position.coords.longitude
            };
-             console.log(pos)
+             console.log(pos);
 
            infoWindow.setPosition(pos);
            infoWindow.setContent('location found');
@@ -138,7 +138,7 @@ $(document).ready(function(){
 			if (selectFood == false && selectMoney == false && selectMethod == false){
 			console.log(selectFood);
 			selectFood = true;
-			selectedFoods = chosenFoods.join("|");
+			selectedFoods = chosenFoods.join(",");
 			console.log(selectedFoods);
 			$("#screen1").css("display","none");
 			$("#screen2").css("display","block");
@@ -326,14 +326,14 @@ initMap();
 
 	    $('.results').empty();
 	    	var results = response.businesses;
-
+	    	console.log(results);
         	for (var i = 0; i < results.length; i++){     
         
           		var resultDiv = $('<div>');
 
           		var name = results[i].name;
 
-          		var p = $('<p>').text(name);
+          		var p = $('<p>').text(name + " " + results[i].display_phone);
           		
           		var image = $('<img>').attr('src', results[i].image_url);
 
