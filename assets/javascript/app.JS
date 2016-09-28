@@ -89,6 +89,8 @@ $(document).ready(function(){
 			$("#row5").css("display","block");
 			$("#row6").css("display","block");
 			$("#spacefiller1").css("display","none");
+			$("#spacefiller1a").css("display","none");
+			$("#spacefiller1b").css("display","none");
 			$("#spacefiller2").css("display","block");
 			$("#spacefiller3").css("display","block");
 			$("#back").css("display","block");

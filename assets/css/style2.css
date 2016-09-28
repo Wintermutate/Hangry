@@ -31,8 +31,8 @@ body {
 	color: white;
 	font-family: 'Nunito', sans-serif;`
 	background-color:black;
-	background-image:url("../images/background.jpg");
-	background-size: 100% 100%;
+	background-image:url("../images/background4.jpg");
+/*	background-size: 100% 100%;*/
 }
 
 #poor {
@@ -63,7 +63,7 @@ body {
 }
 
 #row2 {
-	margin-top:40px;
+	margin-top:22px;
 }
 
 #walk {
@@ -149,7 +149,7 @@ h3 {
 }
 
 #container1{
-	width:50%;
+	width:90%;
 }
 
 #row6 {
@@ -172,6 +172,11 @@ h3 {
 	height:80px;
 }
 
-#spacefiller1a {
+#spacefiller1b {
 	height:30px;
+}
+
+#login {
+	margin-top:8px;
+	float:right;
 }
