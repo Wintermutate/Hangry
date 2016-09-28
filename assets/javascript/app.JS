@@ -20,6 +20,24 @@ var database = firebase.database();
 
 $(document).ready(function(){
 
+	var latitude;
+	var longitude;
+
+	function getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition);
+	    } else {
+	        console.log("Geolocation is not supported by this browser.");
+	    }
+	}
+
+	function showPosition(position) {
+	    latitude = position.coords.latitude
+	    longitude = position.coords.longitude
+	}
+
+	getLocation();
+
 	// Initialize global variables. 
 	var selectFood = false; 
 	var selectMoney = false;
@@ -27,8 +45,8 @@ $(document).ready(function(){
 	var chosenFoods = [];
 	var selectedFoods = "";
 	var selectedMethod = "";
-	var lat = "";
-	var long = "";
+	// var lat = "";
+	// var long = "";
 
 	var search = {
 		location: "",
@@ -213,11 +231,6 @@ renderImages(selectFood, selectMoney, selectMethod);
         	tokenSecret : auth.accessTokenSecret
             };	
 
-
-		// need Rick's help getting the user location and storing in these variables
-		var latitude = 40.5342742;
-		
-	  	var longitude = -74.5224469;
 
 	  	search.location = latitude+","+longitude;
 	  	console.log(search.location);
