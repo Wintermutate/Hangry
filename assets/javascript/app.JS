@@ -22,6 +22,11 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
+var latitude;
+var longitude;
+
+
+
 // ****  --  setup Google sign-in  manual integration.  --  ***
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -89,6 +94,23 @@ $(document).ready(function(){
 		maxprice: "",
 		queryURL: ""
 	}
+
+	function getLocation() {
+		if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition);
+	   		} else {
+	        console.log("Geolocation is not supported by this browser.");
+	    }
+	}
+
+	function showPosition(position) {
+	
+	latitude = position.coords.latitude
+	longitude = position.coords.longitude
+	
+	}
+
+	getLocation();
 
 	function renderImages(selectFood, selectMoney, selectMethod){
 
@@ -228,10 +250,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 		// need Rick's help getting the user location and storing in these variables
-		var latitude = 40.5342742;
-		
-	  	var longitude = -74.5224469;
-
+	
 	  	search.location = latitude+","+longitude;
 	  	console.log(search.location);
   	
