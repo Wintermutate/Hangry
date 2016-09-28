@@ -38,9 +38,13 @@ function logmein() {
 	//  We can include other logins later -- Facebook, Twitter, Github, etc.
 }
 
+if (firebase.auth().currentUser != null){
+	$("#login").html("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
+}
+
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (user) {
+	if (firebase.auth().currentUser != null) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
@@ -48,6 +52,10 @@ $("#login").on("click",function(){
   	}
 
 	});
+
+
+
+
 
 
 $(document).ready(function(){
@@ -262,10 +270,10 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 	  	if (selectedMethod=="delivery"){
 	  		search.radius=5000;
-	  		search.keyword = selectedFoods.concat("|" + selectedMethod);
-	  		}else{search.keyword=selectedFoods};
+	  		search.terms = selectedFoods.concat("|" + selectedMethod);
+	  		}else{search.terms=selectedFoods};
 	  	
-	  	console.log(search.keyword);
+	  	console.log(search);
 
 	    // Save query parameters to Firebase
 		database.ref().push(search);
