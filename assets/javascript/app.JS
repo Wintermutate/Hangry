@@ -252,15 +252,19 @@ $(document).ready(function(){
 
  	
  	$('#back').on('click', function(){
+ 		page--;
  		switch(page){
 			case 1:
 			break;
 			case 2:
 			moveToPage(1);
+			break;
 			case 3:
 			moveToPage(2);
+			break;
 			case 4:
 			moveToPage(3);
+			break;
 		}
 		$("a#back").off().on("click",function(){
 			page--;moveToPage(page)
