@@ -64,14 +64,7 @@ var selectedFoods = "";
 var selectedMethod = "";
 var lat = "";
 var long = "";
-
-var currentState = "current state: "+ history.state;
-var windowHistory = "window history: "+ window.history;
-var stateObj = { index: "main" };
-console.log(stateObj);
-console.log(currentState);
-console.log(windowHistory);
-console.log(History.length);
+var page = 1
 
 var search = {
 	location: "",
@@ -81,6 +74,71 @@ var search = {
 	queryURL: ""
 }
 
+	function moveToPage (page){
+		switch(page){
+			case 1:
+				
+			case 2:
+				$("#row1").css("display","none");
+				$("#row2").css("display","none");
+				$("#row3").css("display","block");
+				$("#row4").css("display","block");
+				$("#row5").css("display","block");
+				$("#row6").css("display","block");
+				$("#spacefiller1").css("display","none");
+				$("#spacefiller2").css("display","block");
+				$("#spacefiller3").css("display","block");
+				$("#back").css("display","block");
+				$("#reset").css("display","block");
+			case 3:
+				$("#row1").css("display","none");
+				$("#row2").css("display","none");
+				$("#row3").css("display","none");
+				$("#row4").css("display","none");
+				$("#row5").css("display","none");
+				$("#row6").css("display","block");
+				$("#row7").css("display","block");
+				$("#row8").css("display","block");
+				$("#row9").css("display","block");
+				$("#row10").css("display", "none");
+				$("#spacefiller2").css("display","none");
+				$("#spacefiller3").css("display","none");
+				$("#spacefiller4").css("display","block");
+				$("#spacefiller5").css("display","block");
+				// $("#wannaspend").css("display","none");
+			case 4:
+				$("#row2").css("display","none");
+				$("#row3").css("display","none");
+				$("#row4").css("display","none");
+				$("#row5").css("display","none");
+				$("#row6").css("display","block");
+				$("#row7").css("display","block");
+				$("#row8").css("display","block");
+				$("#row9").css("display","block");
+				$("#row10").css("display", "none");
+				$("#spacefiller2").css("display","none");
+				$("#spacefiller3").css("display","none");
+				$("#spacefiller4").css("display","block");
+				$("#spacefiller5").css("display","block");
+				// $("#wannaspend").css("display","none");
+			case 5:
+				$("row1").css("display", "none");
+				$("#row2").css("display","none");
+				$("#row3").css("display","none");
+				$("#row4").css("display","none");
+				$("#row5").css("display","block");
+				$("#row6").css("display","block");
+				$("#row7").css("display","none");
+				$("#row8").css("display","none");
+				$("#row9").css("display","none");
+				$("#spacefiller3").css("display","none");
+				$("#spacefiller4").css("display","none");
+				$("#spacefiller5").css("display","none");
+				// $("#wannaspend").css("display","none");
+				$("#row10").css("display", "block");
+		}
+	}
+
 	function renderImages(selectFood, selectMoney, selectMethod){
 
 		$("#foodSelect").on("click",function(){
@@ -89,23 +147,9 @@ var search = {
 			selectFood = true;
 			selectedFoods = chosenFoods.join("|");
 			console.log(selectedFoods);
-			stateObj = { index: "main" };
-			history.replaceState(stateObj, "page 2", "index.html");
-			$("#row1").css("display","none");
-			$("#row2").css("display","none");
-			$("#row3").css("display","block");
-			$("#row4").css("display","block");
-			$("#row5").css("display","block");
-			$("#row6").css("display","block");
-			$("#spacefiller1").css("display","none");
-			$("#spacefiller2").css("display","block");
-			$("#spacefiller3").css("display","block");
-			$("#back").css("display","block");
-			$("#reset").css("display","block");
-			console.log(stateObj);
-			console.log(currentState);
-			console.log(windowHistory);
-
+			moveToPage(2);
+			page++;
+			console.log(page);
 
 		}
 		});	
@@ -114,30 +158,12 @@ var search = {
 		$("#poor").on("click", function(){
 			if (selectFood == true && selectMoney == false && selectMethod == false) {
 			console.log(selectMoney);
-			stateObj = { index: "price" };
-			history.replaceState(stateObj, "page 3", "index.html");
 			selectMoney = true;
 			search.maxprice = "2";
 			console.log(search.maxprice);
-			$("#row1").css("display","none");
-			$("#row2").css("display","none");
-			$("#row3").css("display","none");
-			$("#row4").css("display","none");
-			$("#row5").css("display","none");
-			$("#row6").css("display","block");
-			$("#row7").css("display","block");
-			$("#row8").css("display","block");
-			$("#row9").css("display","block");
-			$("#row10").css("display", "none");
-			$("#spacefiller2").css("display","none");
-			$("#spacefiller3").css("display","none");
-			$("#spacefiller4").css("display","block");
-			$("#spacefiller5").css("display","block");
-			// $("#wannaspend").css("display","none");
-			console.log(stateObj);
-			console.log(currentState);
-			console.log(windowHistory);
-
+			moveToPage(3);
+			page++;
+			console.log(page);
 		}
 		});
 	
@@ -146,26 +172,9 @@ var search = {
 			selectMoney = true; 
 			search.maxprice = "4";
 			console.log(search.maxprice);
-			stateObj = { index: "price" };
-			history.replaceState(stateObj, "page 3", "index.html");
-			$("#row2").css("display","none");
-			$("#row3").css("display","none");
-			$("#row4").css("display","none");
-			$("#row5").css("display","none");
-			$("#row6").css("display","block");
-			$("#row7").css("display","block");
-			$("#row8").css("display","block");
-			$("#row9").css("display","block");
-			$("#row10").css("display", "none");
-			$("#spacefiller2").css("display","none");
-			$("#spacefiller3").css("display","none");
-			$("#spacefiller4").css("display","block");
-			$("#spacefiller5").css("display","block");
-			// $("#wannaspend").css("display","none");
-			console.log(stateObj);
-			console.log(currentState);
-			console.log(windowHistory);
-
+			moveToPage(4);
+			page++;
+			console.log(page);
 		}
 		});
  
@@ -175,26 +184,9 @@ var search = {
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
-			stateObj = { index: "method" };
-			history.replaceState(stateObj, "page 4", "index.html");
-			$("row1").css("display", "none");
-			$("#row2").css("display","none");
-			$("#row3").css("display","none");
-			$("#row4").css("display","none");
-			$("#row5").css("display","block");
-			$("#row6").css("display","block");
-			$("#row7").css("display","none");
-			$("#row8").css("display","none");
-			$("#row9").css("display","none");
-			$("#spacefiller3").css("display","none");
-			$("#spacefiller4").css("display","none");
-			$("#spacefiller5").css("display","none");
-			// $("#wannaspend").css("display","none");
-			$("#row10").css("display", "block");
-			console.log(stateObj);
-			console.log(currentState);
-			console.log(windowHistory);
-
+			moveToPage(5);
+			page++;
+			console.log(page);
 		}
 		});
 
@@ -226,6 +218,8 @@ var search = {
 			 	chosenFoods.push(food);
 			 	console.log(chosenFoods);
  			};
+
+ 			
  	
  		});
  	
@@ -240,7 +234,7 @@ var search = {
  	
  	$('#back').on('click', function(){
 
-	window.history.back();
+
  	
  	});
 
