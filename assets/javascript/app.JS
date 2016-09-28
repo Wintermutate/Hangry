@@ -22,11 +22,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 
-var latitude;
-var longitude;
-
-
-
 // ****  --  setup Google sign-in  manual integration.  --  ***
 
 var provider = new firebase.auth.GoogleAuthProvider();
@@ -84,6 +79,9 @@ $(document).ready(function(){
 	var chosenFoods = [];
 	var selectedFoods = "";
 	var selectedMethod = "";
+	var latitude;
+	var longitude;
+
 	
 	var search = {
 		location: "",
@@ -179,7 +177,6 @@ $(document).ready(function(){
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
-			initMap();
 			console.log(latitude);
 			console.log(longitude);
 			$("#screen3").css("display","none");
@@ -241,7 +238,7 @@ $(document).ready(function(){
 
 
 renderImages(selectFood, selectMoney, selectMethod);
-
+initMap();
 
 
 
