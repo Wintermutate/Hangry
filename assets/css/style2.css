@@ -23,7 +23,7 @@ img:hover {
   	margin-bottom:20px;
  	border-style:ridge;
     border-width:5px;
-    border-color:#006666;
+    border-color:red;
 /*    box-shadow: 10px 10px 5px #006666;*/
 }
 
@@ -31,7 +31,8 @@ body {
 	color: white;
 	font-family: 'Nunito', sans-serif;`
 	background-color:black;
-	background-image:url("../images/background4.jpg");
+	background-image:url("../images/background.jpg");
+	background-size: 100% 100%;
 }
 
 #poor {
@@ -62,7 +63,7 @@ body {
 }
 
 #row2 {
-	margin-top:60px;
+	margin-top:40px;
 }
 
 #walk {
@@ -89,7 +90,7 @@ body {
 }
 
 #spacefiller1 {
-	height:120px;
+	height:80px;
 }
 
 .btn-danger {
@@ -162,4 +163,15 @@ h3 {
 #back1, #reset1 {
 	color:white;
 	float:right;
+}
+
+
+#logo {
+	background-image:url("../images/hangrylogoclear.png");
+	background-size: 100% 100%;
+	height:80px;
+}
+
+#spacefiller1a {
+	height:30px;
 }
