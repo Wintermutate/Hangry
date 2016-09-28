@@ -41,7 +41,7 @@ function logmein() {
 }
 
 if (firebase.auth().currentUser != null){
-	$("#login").html("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
+	$("#spacefiller1").html("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
 }
 
 // event listener for the log-in button
@@ -317,7 +317,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 	    $('.results').empty();
-	    	var results = response.results;
+	    	var results = response.businesses;
 
         	for (var i = 0; i < results.length; i++){     
         
