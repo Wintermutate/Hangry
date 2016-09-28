@@ -1,3 +1,13 @@
+ 
+var beep = document.createElement('audio');
+	       beep.setAttribute('src', "assets/images/beep.mp3");
+var gimme = document.createElement('audio');
+	       gimme.setAttribute('src', "assets/images/gimme.wav");
+var kaching = document.createElement('audio');
+	       kaching.setAttribute('src', "assets/images/kaching.mp3");
+var car = document.createElement('audio');
+	       car.setAttribute('src', "assets/images/car.mp3");
+
   // Initialize Firebase
 var config = {
 apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
@@ -96,7 +106,7 @@ $(document).ready(function(){
 			$("#spacefiller3a").css("display","block");
 			$("#back").css("display","block");
 			$("#reset").css("display","block");
-
+			gimme.play();
 		}
 		});	
    
@@ -144,7 +154,7 @@ $(document).ready(function(){
 			$("#spacefiller3").css("display","none");
 			$("#spacefiller4").css("display","block");
 			$("#spacefiller5").css("display","block");
-			// $("#wannaspend").css("display","none");
+			kaching.play();
 		}
 		});
  
@@ -172,11 +182,16 @@ $(document).ready(function(){
 		}
 		});
 
+		$("#drive").on("click",function(){
+			car.play();
+		});
+
 	};	
 
 
 
 	$(".cuisine").on("click", function(){
+		
  	
 		if ($(this).hasClass("selected")){
 
@@ -199,6 +214,7 @@ $(document).ready(function(){
 		 	var food = $(this).data("food");
 		 	chosenFoods.push(food);
 		 	console.log(chosenFoods);
+		 	beep.play();
 			};
  	
  		});
