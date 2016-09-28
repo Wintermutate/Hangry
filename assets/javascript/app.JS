@@ -51,7 +51,7 @@ function logmein() {
 }
 
 if (firebase.auth().currentUser != null){
-	$("#spacefiller1").html("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
+	$("#spacefiller1").text("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
 }
 
 // event listener for the log-in button
@@ -291,7 +291,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 	  	if (selectedMethod=="delivery"){
 	  		search.radius=5000;
-	  		search.terms = selectedFoods.concat("|" + selectedMethod);
+	  		search.terms = selectedFoods.concat("," + selectedMethod);
 	  		}else{search.terms=selectedFoods};
 	  	
 	  	console.log(search);
@@ -343,17 +343,12 @@ renderImages(selectFood, selectMoney, selectMethod);
           		var name = results[i].name;
 
           		var p = $('<p>').text(name);
-          
-          		if (results[i].hasOwnProperty("photos")){
-          		// console.log(results[i].photos[0].html_attributions[0]);
-          		p.append(" " + results[i].photos[0].html_attributions[0]);
-          			}
+          		
+          		var image = $('<img>').attr('src', results[i].image_url);
 
-          		if (results[i].types[0] == "meal_delivery"){
-          			p.append(" We Deliver");
-          			}
-          
-          	resultDiv.append(p);
+          		p.prepend(image);
+          			
+           		resultDiv.append(p);
          
           	// place the results into the resultDiv
           	$('.results').append(resultDiv);
