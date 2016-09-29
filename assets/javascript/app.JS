@@ -37,17 +37,15 @@ if (currentUser != null) {
   uid = currentUser.uid;  
 }
 
-
+// observer for auth state change
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    $("#login").text("Welcome "+name+"  --  Sign Out")
+    $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
   } else {
     $("#login").text("Login")
   }
 });
 
-
-console.log(currentUser.displayName+"  "+currentUser.email);
 
 
 function logmein() {
@@ -79,15 +77,21 @@ function logmein() {
 }
 
 
+var ref = new Firebase("https://hangry-e5636.firebaseio.com");
+var authData = ref.getAuth();
+
+if (authData) {
+  	var auth = true
+	}else{var auth = false}
+
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (currentUser.email != null) {
+	if (auth=true) {
     	// User is signed in.
   		firebase.auth().signOut();
-  	} else {
-    logmein();
-  	}
-
+  		} else {
+    	logmein();
+  		}
 	});
 
 
