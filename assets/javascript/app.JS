@@ -26,31 +26,29 @@ var database = firebase.database();
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-var user = firebase.auth().currentUser;
 
-console.log(currentUser);
+// get currently signed in user and set authStatus toggle, get user object items,  push text onto button
+firebase.auth().onAuthStateChanged(function(user){
+	if (user) {
+	  var authStatus = true
+	  $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
+	  var user = user;
+	  var name = user.displayName;
+	  var email = user.email;
+	  var photoUrl = user.photoURL;
+	  var uid = user.uid;
+	} else {
+	  authStatus = false;
+	  $("#login").text("Login");
+	}
 
-var name, email, photoUrl, uid;
-
-if (user != null) {
-  name = currentUser.displayName;
-  email = currentUser.email;
-  photoUrl = currentUser.photoURL;
-  uid = currentUser.uid;
-  authStatus = true;
-}else{authStatus=false}
-
-console.log(name+email+authStatus);
-
-// observer for auth state change
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
-  } else {
-    $("#login").text("Login")
-  }
 });
 
+
+console.log(user);
+console.log(name)
+console.log(email);
+console.log(authStatus);
 
 
 
