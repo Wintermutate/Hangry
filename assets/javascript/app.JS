@@ -26,15 +26,15 @@ var database = firebase.database();
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-var user = firebase.auth().currentUser;
+var currentUser = firebase.auth().currentUser;
 
 var name, email, photoUrl, uid;
 
-if (user != null) {
-  name = user.displayName;
-  email = user.email;
-  photoUrl = user.photoURL;
-  uid = user.uid;  
+if (currentUser != null) {
+  name = currentUser.displayName;
+  email = currentUser.email;
+  photoUrl = currentUser.photoURL;
+  uid = currentUser.uid;  
 }
 
 console.log(user);
@@ -47,6 +47,10 @@ function logmein() {
 		var token = result.credential.accessToken;
 
 		var user = result.user
+
+		name = result.user.displayName;
+
+		email = result.user.email;
 
 		console.log(name);
 		console.log(email);
@@ -71,14 +75,14 @@ firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     $("#login").text("Welcome "+name+"  --  Sign Out")
   } else {
-    // No user is signed in.
+    $("#login").text("Login")
   }
 });
 
 
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (user) {
+	if (currentUser) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
