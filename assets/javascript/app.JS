@@ -28,6 +28,8 @@ var provider = new firebase.auth.GoogleAuthProvider();
 
 var user = firebase.auth().currentUser;
 
+console.log(currentUser);
+
 var name, email, photoUrl, uid;
 
 if (user != null) {
@@ -65,8 +67,11 @@ function logmein() {
 
 		email = result.user.email;
 
+		authStatus = true;
+
 		console.log(name);
 		console.log(email);
+
 
 	}).catch(function(error) {
 	  // Handle Errors here.
