@@ -37,7 +37,7 @@ if (currentUser != null) {
   uid = currentUser.uid;  
 }
 
-console.log(user);
+console.log(currentUser);
 
 
 function logmein() {
@@ -82,7 +82,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (currentUser) {
+	if (currentUser != null) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
