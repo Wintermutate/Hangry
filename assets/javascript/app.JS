@@ -26,6 +26,7 @@ var database = firebase.database();
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
+
 // get currently signed in user and set authStatus toggle, get user object items,  push text onto button
 firebase.auth().onAuthStateChanged(function(user){
 	if (user) {
@@ -40,7 +41,9 @@ firebase.auth().onAuthStateChanged(function(user){
 	  authStatus = false;
 	  $("#login").text("Login");
 	}
+
 });
+
 
 console.log(user);
 console.log(name)
@@ -73,7 +76,7 @@ function logmein() {
 	  var errorCode = error.code;
 	  var errorMessage = error.message;
 	  // The email of the user's account used.
-	  var email = error.email;
+	  email = error.email;
 	  // The firebase.auth.AuthCredential type that was used.
 	  var credential = error.credential;
 	  // ...
