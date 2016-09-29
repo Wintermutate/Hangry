@@ -26,17 +26,19 @@ var database = firebase.database();
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
-var currentUser = firebase.auth().currentUser;
+var user = firebase.auth().currentUser;
 
 var name, email, photoUrl, uid;
 
-if (currentUser != null) {
+if (user != null) {
   name = currentUser.displayName;
   email = currentUser.email;
   photoUrl = currentUser.photoURL;
   uid = currentUser.uid;
   authStatus = true;
 }else{authStatus=false}
+
+console.log(name+email+authStatus);
 
 // observer for auth state change
 firebase.auth().onAuthStateChanged(function(user) {
@@ -57,7 +59,7 @@ function logmein() {
 		// This gives you a Google Access Token. You can use it to access the Google API.
 		var token = result.credential.accessToken;
 
-		var currentUser = result.user;
+		user = result.user;
 
 		name = result.user.displayName;
 
@@ -71,7 +73,7 @@ function logmein() {
 	  var errorCode = error.code;
 	  var errorMessage = error.message;
 	  // The email of the user's account used.
-	  var email = error.email;
+	  email = error.email;
 	  // The firebase.auth.AuthCredential type that was used.
 	  var credential = error.credential;
 	  // ...
