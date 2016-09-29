@@ -90,7 +90,7 @@ function logmein() {
 
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (authStatus=true) {
+	if (authStatus == true) {
     	// User is signed in.
   		firebase.auth().signOut();
   		authStatus = false;
