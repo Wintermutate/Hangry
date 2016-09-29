@@ -36,7 +36,7 @@ if (currentUser != null) {
   photoUrl = currentUser.photoURL;
   uid = currentUser.uid;
   authStatus = true;
-}
+}else{authStatus=false}
 
 // observer for auth state change
 firebase.auth().onAuthStateChanged(function(user) {
@@ -85,14 +85,11 @@ $("#login").on("click",function(){
 	if (authStatus=true) {
     	// User is signed in.
   		firebase.auth().signOut();
+  		authStatus = false;
   		} else {
     	logmein();
   		}
 	});
-
-
-
-
 
 
 $(document).ready(function(){
