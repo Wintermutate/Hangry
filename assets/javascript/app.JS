@@ -37,7 +37,17 @@ if (currentUser != null) {
   uid = currentUser.uid;  
 }
 
-console.log(currentUser);
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    $("#login").text("Welcome "+name+"  --  Sign Out")
+  } else {
+    $("#login").text("Login")
+  }
+});
+
+
+console.log(currentUser.displayName+"  "+currentUser.email);
 
 
 function logmein() {
@@ -69,20 +79,9 @@ function logmein() {
 }
 
 
-
-
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    $("#login").text("Welcome "+name+"  --  Sign Out")
-  } else {
-    $("#login").text("Login")
-  }
-});
-
-
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (currentUser != null) {
+	if (currentUser.email != null) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
