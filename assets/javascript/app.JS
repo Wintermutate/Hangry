@@ -1,3 +1,13 @@
+ 
+var beep = document.createElement('audio');
+	       beep.setAttribute('src', "assets/images/beep.mp3");
+var gimme = document.createElement('audio');
+	       gimme.setAttribute('src', "assets/images/gimme.wav");
+var kaching = document.createElement('audio');
+	       kaching.setAttribute('src', "assets/images/kaching.mp3");
+var car = document.createElement('audio');
+	       car.setAttribute('src', "assets/images/car.mp3");
+
   // Initialize Firebase
 var config = {
 apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
@@ -26,7 +36,7 @@ function logmein() {
 	  // The signed-in user info.
 	  var user = result.user;
 	  // ...
-	  console.log(firebase.auth().currentUser);
+	  console.log(user);
 	}).catch(function(error) {
 	  // Handle Errors here.
 	  var errorCode = error.code;
@@ -40,9 +50,13 @@ function logmein() {
 	//  We can include other logins later -- Facebook, Twitter, Github, etc.
 }
 
+if (firebase.auth().currentUser != null){
+	$("#spacefiller1").text("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
+}
+
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (user) {
+	if (firebase.auth().currentUser != null) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
@@ -50,6 +64,10 @@ $("#login").on("click",function(){
   	}
 
 	});
+
+
+
+
 
 
 $(document).ready(function(){
@@ -61,10 +79,16 @@ $(document).ready(function(){
 	var chosenFoods = [];
 	var selectedFoods = "";
 	var selectedMethod = "";
+<<<<<<< HEAD
 	var lat = "";
 	var long = "";
 	var page = 1;
+=======
+	var latitude;
+	var longitude;
+>>>>>>> ff8a2a028f9a15d0ea819d216969352b0b85e014
 
+	
 	var search = {
 		location: "",
 		radius: 0,
@@ -72,8 +96,48 @@ $(document).ready(function(){
 		maxprice: "",
 		queryURL: ""
 	}
+//initializes map with random coordinates
+  function initMap() {
+     
+    var map = new google.maps.Map(document.getElementById('map'), {
+         center: {lat: -34.397, lng: 150.644},
+         zoom: 6
+    });
+    
+    var infoWindow = new google.maps.InfoWindow({map: map});
+
+       // Try HTML5 geolocation
+       if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(function(position) {
+           var pos = {
+             lat: position.coords.latitude,
+             lng: position.coords.longitude
+           };
+             console.log(pos)
+
+           infoWindow.setPosition(pos);
+           infoWindow.setContent('location found');
+           var latitude = pos.lat;
+           var longitude = pos.lng;
+           map.setCenter(pos);
+         }, function() {
+           handleLocationError(true, infoWindow, map.getCenter());
+         });
+       } else {
+         // Browser doesn't support Geolocation (newer chrome)
+         handleLocationError(false, infoWindow, map.getCenter());
+       }
+     }
+
+ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+       infoWindow.setPosition(pos);
+       infoWindow.setContent(browserHasGeolocation ?
+                             'Error: The Geolocation service failed.' :
+                             'Error: Your browser doesn\'t support geolocation.');
+     }
 
 
+<<<<<<< HEAD
 	function moveToPage (page){
 		switch(page){
 			case 1:
@@ -172,6 +236,19 @@ $(document).ready(function(){
 			console.log(moveToPage);
 			page++;
 			console.log(page);
+=======
+		$("#foodSelect").on("click",function(){
+			if (selectFood == false && selectMoney == false && selectMethod == false){
+			console.log(selectFood);
+			selectFood = true;
+			selectedFoods = chosenFoods.join("|");
+			console.log(selectedFoods);
+			$("#screen1").css("display","none");
+			$("#screen2").css("display","block");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+			gimme.play();
+>>>>>>> ff8a2a028f9a15d0ea819d216969352b0b85e014
 		}
 		});	
    
@@ -182,9 +259,14 @@ $(document).ready(function(){
 			selectMoney = true;
 			search.maxprice = "2";
 			console.log(search.maxprice);
+<<<<<<< HEAD
 			moveToPage(3);
 			page++;
 			console.log(page);
+=======
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","block");
+>>>>>>> ff8a2a028f9a15d0ea819d216969352b0b85e014
 		}
 		});
 	
@@ -193,9 +275,15 @@ $(document).ready(function(){
 			selectMoney = true; 
 			search.maxprice = "4";
 			console.log(search.maxprice);
+<<<<<<< HEAD
 			moveToPage(4);
 			page++;
 			console.log(page);
+=======
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","block");
+			kaching.play();
+>>>>>>> ff8a2a028f9a15d0ea819d216969352b0b85e014
 		}
 		});
  
@@ -205,10 +293,21 @@ $(document).ready(function(){
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
+<<<<<<< HEAD
 			moveToPage(5);
 			page++;
 			console.log(page);
+=======
+			console.log(latitude);
+			console.log(longitude);
+			$("#screen3").css("display","none");
+			$("#screen4").css("display","block");
+>>>>>>> ff8a2a028f9a15d0ea819d216969352b0b85e014
 		}
+		});
+
+		$("#drive").on("click",function(){
+			car.play();
 		});
 
 	};	
@@ -216,6 +315,7 @@ $(document).ready(function(){
 
 
 	$(".cuisine").on("click", function(){
+		
  	
 		if ($(this).hasClass("selected")){
 
@@ -238,6 +338,7 @@ $(document).ready(function(){
 		 	var food = $(this).data("food");
 		 	chosenFoods.push(food);
 		 	console.log(chosenFoods);
+		 	beep.play();
 			};
  	
  		});
@@ -275,7 +376,7 @@ $(document).ready(function(){
 
 
 renderImages(selectFood, selectMoney, selectMethod);
-
+initMap();
 
 
 
@@ -307,10 +408,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 		// need Rick's help getting the user location and storing in these variables
-		var latitude = 40.5342742;
-		
-	  	var longitude = -74.5224469;
-
+	
 	  	search.location = latitude+","+longitude;
 	  	console.log(search.location);
   	
@@ -322,10 +420,10 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 	  	if (selectedMethod=="delivery"){
 	  		search.radius=5000;
-	  		search.keyword = selectedFoods.concat("|" + selectedMethod);
-	  		}else{search.keyword=selectedFoods};
+	  		search.terms = selectedFoods.concat("," + selectedMethod);
+	  		}else{search.terms=selectedFoods};
 	  	
-	  	console.log(search.keyword);
+	  	console.log(search);
 
 	    // Save query parameters to Firebase
 		database.ref().push(search);
@@ -365,7 +463,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 	    $('.results').empty();
-	    	var results = response.results;
+	    	var results = response.businesses;
 
         	for (var i = 0; i < results.length; i++){     
         
@@ -374,17 +472,12 @@ renderImages(selectFood, selectMoney, selectMethod);
           		var name = results[i].name;
 
           		var p = $('<p>').text(name);
-          
-          		if (results[i].hasOwnProperty("photos")){
-          		// console.log(results[i].photos[0].html_attributions[0]);
-          		p.append(" " + results[i].photos[0].html_attributions[0]);
-          			}
+          		
+          		var image = $('<img>').attr('src', results[i].image_url);
 
-          		if (results[i].types[0] == "meal_delivery"){
-          			p.append(" We Deliver");
-          			}
-          
-          	resultDiv.append(p);
+          		p.prepend(image);
+          			
+           		resultDiv.append(p);
          
           	// place the results into the resultDiv
           	$('.results').append(resultDiv);
