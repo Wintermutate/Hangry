@@ -31,12 +31,16 @@ var user = firebase.auth().currentUser;
 function logmein() {
 	
 	firebase.auth().signInWithPopup(provider).then(function(result) {
-	  // This gives you a Google Access Token. You can use it to access the Google API.
-	  var token = result.credential.accessToken;
-	  // The signed-in user info.
-	  var user = result.user;
-	  // ...
-	  console.log(user);
+		// This gives you a Google Access Token. You can use it to access the Google API.
+		var token = result.credential.accessToken;
+		// ...
+		console.log(result);
+
+		var user = result.user.email
+		console.log(user)
+
+	  	var displayName = result.user.displayName;
+
 	}).catch(function(error) {
 	  // Handle Errors here.
 	  var errorCode = error.code;
@@ -50,13 +54,13 @@ function logmein() {
 	//  We can include other logins later -- Facebook, Twitter, Github, etc.
 }
 
-if (firebase.auth().currentUser != null){
-	$("#spacefiller1").text("Welcome "+firebase.auth().currentUser.displayName+"  --  Sign Out")
+if (user) {
+	$("#spacefiller1").text("Welcome "+displayName+"  --  Sign Out")
 }
 
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (firebase.auth().currentUser != null) {
+	if (user != null) {
     	// User is signed in.
   		firebase.auth().signOut();
   	} else {
