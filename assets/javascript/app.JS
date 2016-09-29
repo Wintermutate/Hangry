@@ -47,6 +47,10 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
+
+
+
+
 function logmein() {
 	
 	firebase.auth().signInWithPopup(provider).then(function(result) {
@@ -112,39 +116,7 @@ $(document).ready(function(){
 		terms: "",
 		maxprice: "",
 		queryURL: ""
-	}
-//initializes map with random coordinates
-  function initMap() {
-     
-    var map = new google.maps.Map(document.getElementById('map'), {
-         center: {lat: -34.397, lng: 150.644},
-         zoom: 6
-    });
-    
-    var infoWindow = new google.maps.InfoWindow({map: map});
-
-       // Try HTML5 geolocation
-       if (navigator.geolocation) {
-         navigator.geolocation.getCurrentPosition(function(position) {
-           var pos = {
-             lat: position.coords.latitude,
-             lng: position.coords.longitude
-           };
-             console.log(pos);
-
-           infoWindow.setPosition(pos);
-           infoWindow.setContent('location found');
-           var latitude = pos.lat;
-           var longitude = pos.lng;
-           map.setCenter(pos);
-         }, function() {
-           handleLocationError(true, infoWindow, map.getCenter());
-         });
-       } else {
-         // Browser doesn't support Geolocation (newer chrome)
-         handleLocationError(false, infoWindow, map.getCenter());
-       }
-     }
+	};
 
  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
        infoWindow.setPosition(pos);
@@ -261,12 +233,13 @@ $(document).ready(function(){
 
 
 renderImages(selectFood, selectMoney, selectMethod);
-initMap();
+
+
 
 
 
 	// event listener for the last click --  on the walk/drive/delivery buttons
-	$(document).on('click', '.method', function() {
+$(document).on('click', '.method', function() {
 
         function cb(data) {
     	console.log("cb: " + JSON.stringify(data));
@@ -371,7 +344,7 @@ initMap();
 
 	   });
 
-	});   
+});   
 
 });
 
