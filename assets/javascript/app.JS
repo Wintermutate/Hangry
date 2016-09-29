@@ -38,6 +38,8 @@ if (currentUser != null) {
   authStatus = true;
 }else{authStatus=false}
 
+console.log(name+email+authStatus);
+
 // observer for auth state change
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
