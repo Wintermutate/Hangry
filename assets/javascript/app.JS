@@ -7,7 +7,10 @@ var kaching = document.createElement('audio');
 	       kaching.setAttribute('src', "assets/images/kaching.mp3");
 var car = document.createElement('audio');
 	       car.setAttribute('src', "assets/images/car.mp3");
-
+var doorbell = document.createElement('audio');
+	       doorbell.setAttribute('src', "assets/images/doorbell.mp3");
+var running = document.createElement('audio');
+	       running.setAttribute('src', "assets/images/running.mp3");	       
   // Initialize Firebase
 var config = {
 apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
@@ -183,6 +186,12 @@ $(document).ready(function(){
 
 		$("#drive").on("click",function(){
 			car.play();
+		});
+		$("#deliver").on("click",function(){
+			doorbell.play();
+		});
+		$("#walk").on("click",function(){
+			running.play();
 		});
 
 	};	
