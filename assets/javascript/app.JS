@@ -34,7 +34,8 @@ if (currentUser != null) {
   name = currentUser.displayName;
   email = currentUser.email;
   photoUrl = currentUser.photoURL;
-  uid = currentUser.uid;  
+  uid = currentUser.uid;
+  authStatus = true;
 }
 
 // observer for auth state change
@@ -46,15 +47,13 @@ firebase.auth().onAuthStateChanged(function(user) {
   }
 });
 
-
-
 function logmein() {
 	
 	firebase.auth().signInWithPopup(provider).then(function(result) {
 		// This gives you a Google Access Token. You can use it to access the Google API.
 		var token = result.credential.accessToken;
 
-		var user = result.user
+		var currentUser = result.user;
 
 		name = result.user.displayName;
 
@@ -77,16 +76,9 @@ function logmein() {
 }
 
 
-var ref = new Firebase("https://hangry-e5636.firebaseio.com");
-var authData = ref.getAuth();
-
-if (authData) {
-  	var auth = true
-	}else{var auth = false}
-
 // event listener for the log-in button
 $("#login").on("click",function(){
-	if (auth=true) {
+	if (authStatus=true) {
     	// User is signed in.
   		firebase.auth().signOut();
   		} else {
