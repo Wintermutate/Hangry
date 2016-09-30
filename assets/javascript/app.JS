@@ -11,7 +11,9 @@ var doorbell = document.createElement('audio');
 	       doorbell.setAttribute('src', "assets/images/doorbell.mp3");
 var running = document.createElement('audio');
 	       running.setAttribute('src', "assets/images/running.mp3");	       
-  // Initialize Firebase
+var coindrop = document.createElement('audio');
+	       coindrop.setAttribute('src', "assets/images/coindrop.mp3");
+ // Initialize Firebase
 var config = {
 apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
 authDomain: "hangry-e5636.firebaseapp.com",
@@ -157,6 +159,7 @@ $(document).ready(function(){
 			console.log(search.maxprice);
 			$("#screen2").css("display","none");
 			$("#screen3").css("display","block");
+			coindrop.play();
 		}
 		});
 	
