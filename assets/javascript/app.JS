@@ -102,6 +102,7 @@ $(document).ready(function(){
 	var selectedMethod = "";
 	var latitude;
 	var longitude;
+	var page = 1;
 
 	
 	var search = {
@@ -113,6 +114,63 @@ $(document).ready(function(){
 		maxprice: "",
 		queryURL: ""
 	}
+
+	function moveToPage (page){
+		console.log("page"+page);
+		switch(page){
+			case 1:
+			// page 1
+			// console.log("going to page 1")
+			$("#screen1").css("display","block");
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","none");
+			$("#screen4").css("display","none");
+			$("#back").css("display","none");
+			$("#reset").css("display","block");
+			break;
+			case 2:
+			// once food select clicked > goes to "page 2"
+			// console.log("going to page 2")
+			$("#screen1").css("display","none");
+			$("#screen2").css("display","block");
+			$("#screen3").css("display","none");
+			$("#screen4").css("display","none");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+			gimme.play();
+			break;
+			case 3:
+			// once price select clicked > goes to "page 3"
+			// console.log("going to page 3")
+			$("#screen1").css("display","none");
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","block");
+			$("#screen4").css("display","none");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+			break;
+			case 4:
+			// once price select clicked > goes to "page 3"
+			// console.log("going to page 4")
+			$("#screen1").css("display","none");
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","block");
+			$("#screen4").css("display","none");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+			kaching.play();
+			break;
+			case 5:
+			// once method select clicked > goes to "results - page 4"
+			$("#screen1").css("display","none");
+			$("#screen2").css("display","none");
+			$("#screen3").css("display","none");
+			$("#screen4").css("display","block");
+			$("#back").css("display","block");
+			$("#reset").css("display","block");
+		}
+	}
+
 //initializes map with random coordinates
   function initMap() {
      
@@ -163,11 +221,10 @@ $(document).ready(function(){
 			selectFood = true;
 			selectedFoods = chosenFoods.join(",");
 			console.log(selectedFoods);
-			$("#screen1").css("display","none");
-			$("#screen2").css("display","block");
-			$("#back").css("display","block");
-			$("#reset").css("display","block");
-			gimme.play();
+			moveToPage(2);
+			console.log(moveToPage);
+			page++;
+
 		}
 		});	
    
@@ -178,8 +235,9 @@ $(document).ready(function(){
 			selectMoney = true;
 			search.maxprice = "2";
 			console.log(search.maxprice);
-			$("#screen2").css("display","none");
-			$("#screen3").css("display","block");
+			moveToPage(3);
+			page++;
+
 		}
 		});
 	
@@ -188,22 +246,23 @@ $(document).ready(function(){
 			selectMoney = true; 
 			search.maxprice = "4";
 			console.log(search.maxprice);
-			$("#screen2").css("display","none");
-			$("#screen3").css("display","block");
-			kaching.play();
+			moveToPage(4);
+			page++;
+
 		}
 		});
  
 
 		$(".method").on("click", function () {
+			console.log(selectFood + selectMethod + selectedMethod);
 			if (selectFood == true && selectMoney == true && selectMethod == false) {
 			selectMethod = true; 
 			selectedMethod = ($(this).data('method'));
 			console.log(selectedMethod);
 			console.log(latitude);
 			console.log(longitude);
-			$("#screen3").css("display","none");
-			$("#screen4").css("display","block");
+			moveToPage(5);
+			page++;
 		}
 		});
 
@@ -254,8 +313,28 @@ $(document).ready(function(){
 
  	
  	$('#back').on('click', function(){
+ 		
+ 		switch(page){
+			case 1:
+			break;
+			case 2:
+			selectFood = false; 
+			moveToPage(1);
+			break;
+			case 3:
+			selectMoney = false;
+			moveToPage(2);
+			break;
+			case 4:
+			selectMethod = false; 
+			moveToPage(3);
+			break;
+		}
+ 		$("a#back").off().on("click",function(){
+			page--;moveToPage(page)
+		})
 
- 		console.log("back");
+	
  	
  	});
 
