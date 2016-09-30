@@ -172,6 +172,10 @@ h3 {
 #login {
 	margin-top:8px;
 	float:right;
+	background-color:#002233;
+	border-style:solid;
+	border-color:black;
+	border-width:1px;
 }
 
 #wannaspend{
@@ -198,3 +202,8 @@ html, body {
 #map {
        height: 100%;
      }
+
+#loginlabel {
+	float:right;
+	color:white;
+}
