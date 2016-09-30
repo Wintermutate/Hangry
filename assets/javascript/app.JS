@@ -120,108 +120,6 @@ $("#login").on("click",function(){
   		}
 	});
 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'Error: The Geolocation service failed.' :
-                        'Error: Your browser doesn\'t support geolocation.');
-}
-
-function renderImages(selectFood, selectMoney, selectMethod) {
-
-  // Need to insert logic to ensure that this button can only be clicked if at least one food is selected.
-
-  $("#foodSelect").on("click", function () {
-    if (selectFood == false && selectMoney == false && selectMethod == false) {
-      console.log(selectFood);
-      selectFood = true;
-      selectedFoods = chosenFoods.join(",");
-      console.log(selectedFoods);
-      $("#screen1").css("display", "none");
-      $("#screen2").css("display", "block");
-      $("#back").css("display", "block");
-      $("#reset").css("display", "block");
-      gimme.play();
-    }
-  });
-
-
-  $("#poor").on("click", function () {
-    if (selectFood == true && selectMoney == false && selectMethod == false) {
-      console.log(selectMoney);
-      selectMoney = true;
-      search.maxprice = "2";
-      console.log(search.maxprice);
-      $("#screen2").css("display", "none");
-      $("#screen3").css("display", "block");
-    }
-  });
-
-  $("#rich").on("click", function () {
-    if (selectFood == true && selectMoney == false && selectMethod == false) {
-      selectMoney = true;
-      search.maxprice = "4";
-      console.log(search.maxprice);
-      $("#screen2").css("display", "none");
-      $("#screen3").css("display", "block");
-      kaching.play();
-    }
-  });
-
-
-  $(".method").on("click", function () {
-    if (selectFood == true && selectMoney == true && selectMethod == false) {
-      selectMethod = true;
-      selectedMethod = ($(this).data('method'));
-      console.log(selectedMethod);
-      console.log(latitude);
-      console.log(longitude);
-      $("#screen3").css("display", "none");
-      $("#screen4").css("display", "block");
-    }
-  });
-
-  $("#drive").on("click", function () {
-    car.play();
-  });
-  $("#deliver").on("click", function () {
-    doorbell.play();
-  });
-  $("#walk").on("click", function () {
-    running.play();
-  });
-
-};
-
-
-$(".cuisine").on("click", function () {
-
-
-  if ($(this).hasClass("selected")) {
-
-    $(this).addClass("deselected");
-    $(this).removeClass("selected");
-    var food = $(this).data("food");
-
-    for (i = 0; i < chosenFoods.length; i++) {
-
-      if (chosenFoods[i] == food) {
-        chosenFoods.splice(i, 1);
-        console.log(chosenFoods);
-      }
-    };
-
-  } else if ($(this).hasClass("deselected")) {
-
-    $(this).addClass("selected");
-    $(this).removeClass("deselected");
-    var food = $(this).data("food");
-    chosenFoods.push(food);
-    console.log(chosenFoods);
-    beep.play();
-  };
-
-});
 
 $("#reset").on('click', function () {
 
@@ -230,39 +128,10 @@ $("#reset").on('click', function () {
 });
 
 
-
-$('#back').on('click', function () {
-
-  console.log("back");
-
-});
-
-
 $(document).ready(function(){
 
-	// Initialize global variables. 
-	var selectFood = false; 
-	var selectMoney = false;
-	var selectMethod = false; 
-	var chosenFoods = [];
-	var selectedFoods = "";
-	var selectedMethod = "";
-	var latitude;
-	var longitude;
-	var page = 1;
-
-	
-	var search = {
-		name: name,
-		email: email,
-		location: "",
-		radius: 0,
-		terms: "",
-		maxprice: "",
-		queryURL: ""
-	}
-
-	function moveToPage (page){
+function moveToPage (page){
+		
 		console.log("page"+page);
 		switch(page){
 			case 1:
@@ -317,6 +186,29 @@ $(document).ready(function(){
 			$("#reset").css("display","block");
 		}
 	}
+
+	$('#back').on('click', function(){
+ 		
+ 		switch(page){
+			case 1:
+			break;
+			case 2:
+			selectFood = false; 
+			moveToPage(1);
+			break;
+			case 3:
+			selectMoney = false;
+			moveToPage(2);
+			break;
+			case 4:
+			selectMethod = false; 
+			moveToPage(3);
+			break;
+		}
+ 		$("a#back").off().on("click",function(){
+			page--;moveToPage(page)
+		})
+ 	
 
 //initializes map with random coordinates
   function initMap() {
@@ -416,6 +308,13 @@ $(document).ready(function(){
 		$("#drive").on("click",function(){
 			car.play();
 		});
+		$("#deliver").on("click", function () {
+   			 doorbell.play();
+  		});
+ 		 $("#walk").on("click", function () {
+    		running.play();
+  		});
+
 
 	};	
 
@@ -450,38 +349,7 @@ $(document).ready(function(){
  	
  		});
  	
-
- 	
- 	$('#back').on('click', function(){
- 		
- 		switch(page){
-			case 1:
-			break;
-			case 2:
-			selectFood = false; 
-			moveToPage(1);
-			break;
-			case 3:
-			selectMoney = false;
-			moveToPage(2);
-			break;
-			case 4:
-			selectMethod = false; 
-			moveToPage(3);
-			break;
-		}
- 		$("a#back").off().on("click",function(){
-			page--;moveToPage(page)
-		})
- 	
-
-
-
 renderImages(selectFood, selectMoney, selectMethod);
-
-
-
-
 
 	// event listener for the last click --  on the walk/drive/delivery buttons
 $(document).on('click', '.method', function() {
