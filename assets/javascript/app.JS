@@ -1,4 +1,4 @@
- 
+var authStatus;
 var beep = document.createElement('audio');
 	       beep.setAttribute('src', "assets/images/beep.mp3");
 var gimme = document.createElement('audio');
@@ -33,7 +33,7 @@ var provider = new firebase.auth.GoogleAuthProvider();
 // get currently signed in user and set authStatus toggle, get user object items,  push text onto button
 firebase.auth().onAuthStateChanged(function(user){
 	if (user) {
-	  var authStatus = true
+	  authStatus = true
 	  $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
 	  var user = user;
 	  var name = user.displayName;
@@ -48,10 +48,10 @@ firebase.auth().onAuthStateChanged(function(user){
 });
 
 
-console.log(user);
-console.log(name)
-console.log(email);
-console.log(authStatus);
+//console.log(user);
+//console.log(name)
+//console.log(email);
+//console.log(authStatus);
 
 
 
@@ -99,6 +99,123 @@ $("#login").on("click",function(){
   		}
 	});
 
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+}
+
+function renderImages(selectFood, selectMoney, selectMethod) {
+
+  // Need to insert logic to ensure that this button can only be clicked if at least one food is selected.
+
+  $("#foodSelect").on("click", function () {
+    if (selectFood == false && selectMoney == false && selectMethod == false) {
+      console.log(selectFood);
+      selectFood = true;
+      selectedFoods = chosenFoods.join(",");
+      console.log(selectedFoods);
+      $("#screen1").css("display", "none");
+      $("#screen2").css("display", "block");
+      $("#back").css("display", "block");
+      $("#reset").css("display", "block");
+      gimme.play();
+    }
+  });
+
+
+  $("#poor").on("click", function () {
+    if (selectFood == true && selectMoney == false && selectMethod == false) {
+      console.log(selectMoney);
+      selectMoney = true;
+      search.maxprice = "2";
+      console.log(search.maxprice);
+      $("#screen2").css("display", "none");
+      $("#screen3").css("display", "block");
+    }
+  });
+
+  $("#rich").on("click", function () {
+    if (selectFood == true && selectMoney == false && selectMethod == false) {
+      selectMoney = true;
+      search.maxprice = "4";
+      console.log(search.maxprice);
+      $("#screen2").css("display", "none");
+      $("#screen3").css("display", "block");
+      kaching.play();
+    }
+  });
+
+
+  $(".method").on("click", function () {
+    if (selectFood == true && selectMoney == true && selectMethod == false) {
+      selectMethod = true;
+      selectedMethod = ($(this).data('method'));
+      console.log(selectedMethod);
+      console.log(latitude);
+      console.log(longitude);
+      $("#screen3").css("display", "none");
+      $("#screen4").css("display", "block");
+    }
+  });
+
+  $("#drive").on("click", function () {
+    car.play();
+  });
+  $("#deliver").on("click", function () {
+    doorbell.play();
+  });
+  $("#walk").on("click", function () {
+    running.play();
+  });
+
+};
+
+
+$(".cuisine").on("click", function () {
+
+
+  if ($(this).hasClass("selected")) {
+
+    $(this).addClass("deselected");
+    $(this).removeClass("selected");
+    var food = $(this).data("food");
+
+    for (i = 0; i < chosenFoods.length; i++) {
+
+      if (chosenFoods[i] == food) {
+        chosenFoods.splice(i, 1);
+        console.log(chosenFoods);
+      }
+    };
+
+  } else if ($(this).hasClass("deselected")) {
+
+    $(this).addClass("selected");
+    $(this).removeClass("deselected");
+    var food = $(this).data("food");
+    chosenFoods.push(food);
+    console.log(chosenFoods);
+    beep.play();
+  };
+
+});
+
+$("#reset").on('click', function () {
+
+  window.location.reload(true);
+
+});
+
+
+
+$('#back').on('click', function () {
+
+  console.log("back");
+
+});
+
 
 $(document).ready(function(){
 
@@ -114,8 +231,8 @@ $(document).ready(function(){
 
 	
 	var search = {
-		name: name,
-		email: email,
+		//name: name,
+		//email: email,
 		location: "",
 		radius: 0,
 		terms: "",
@@ -123,124 +240,11 @@ $(document).ready(function(){
 		queryURL: ""
 	};
 
- function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-       infoWindow.setPosition(pos);
-       infoWindow.setContent(browserHasGeolocation ?
-                             'Error: The Geolocation service failed.' :
-                             'Error: Your browser doesn\'t support geolocation.');
-     }
 
-	function renderImages(selectFood, selectMoney, selectMethod){
-
-		// Need to insert logic to ensure that this button can only be clicked if at least one food is selected.
-
-		$("#foodSelect").on("click",function(){
-			if (selectFood == false && selectMoney == false && selectMethod == false){
-			console.log(selectFood);
-			selectFood = true;
-			selectedFoods = chosenFoods.join(",");
-			console.log(selectedFoods);
-			$("#screen1").css("display","none");
-			$("#screen2").css("display","block");
-			$("#back").css("display","block");
-			$("#reset").css("display","block");
-			gimme.play();
-		}
-		});	
-   
-
-		$("#poor").on("click", function(){
-			if (selectFood == true && selectMoney == false && selectMethod == false) {
-			console.log(selectMoney);
-			selectMoney = true;
-			search.maxprice = "2";
-			console.log(search.maxprice);
-			$("#screen2").css("display","none");
-			$("#screen3").css("display","block");
-		}
-		});
-	
-		$("#rich").on("click", function(){
-			if (selectFood == true && selectMoney == false && selectMethod == false) {
-			selectMoney = true; 
-			search.maxprice = "4";
-			console.log(search.maxprice);
-			$("#screen2").css("display","none");
-			$("#screen3").css("display","block");
-			kaching.play();
-		}
-		});
- 
-
-		$(".method").on("click", function () {
-			if (selectFood == true && selectMoney == true && selectMethod == false) {
-			selectMethod = true; 
-			selectedMethod = ($(this).data('method'));
-			console.log(selectedMethod);
-			console.log(latitude);
-			console.log(longitude);
-			$("#screen3").css("display","none");
-			$("#screen4").css("display","block");
-		}
-		});
-
-		$("#drive").on("click",function(){
-			car.play();
-		});
-		$("#deliver").on("click",function(){
-			doorbell.play();
-		});
-		$("#walk").on("click",function(){
-			running.play();
-		});
-
-	};	
-
-
-
-	$(".cuisine").on("click", function(){
-		
- 	
-		if ($(this).hasClass("selected")){
-
-	 		$(this).addClass("deselected");
-	 		$(this).removeClass("selected");
-	 		var food = $(this).data("food");
-
-			for (i = 0; i<chosenFoods.length; i++){
-
-				if (chosenFoods[i] == food){
-				chosenFoods.splice(i, 1);
-				console.log(chosenFoods);
-				}
-			};
-		
-		}else if ($(this).hasClass("deselected")){
-
-		 	$(this).addClass("selected");
-		 	$(this).removeClass("deselected");
-		 	var food = $(this).data("food");
-		 	chosenFoods.push(food);
-		 	console.log(chosenFoods);
-		 	beep.play();
-			};
- 	
- 		});
- 	
-
- 	$("#reset").on('click', function(){		
- 		
- 	window.location.reload(true);
- 	
- 	});		
 
 
  	
- 	$('#back').on('click', function(){
 
- 		console.log("back");
- 	
- 	});
 
 
 renderImages(selectFood, selectMoney, selectMethod);
