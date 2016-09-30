@@ -11,7 +11,8 @@ var doorbell = document.createElement('audio');
 	       doorbell.setAttribute('src', "assets/images/doorbell.mp3");
 var running = document.createElement('audio');
 	       running.setAttribute('src', "assets/images/running.mp3");	 
-
+var coindrop = document.createElement('audio');
+ +         coindrop.setAttribute('src', "assets/images/coindrop.mp3");
     // Initialize global variables. 
   var selectFood = false; 
   var selectMoney = false;
@@ -21,7 +22,7 @@ var running = document.createElement('audio');
   var selectedMethod = "";
   var latitude;
   var longitude;
-
+  var page = 1;
   
   var search = {
     //name: name,
@@ -91,7 +92,7 @@ function logmein() {
 	  var errorCode = error.code;
 	  var errorMessage = error.message;
 	  // The email of the user's account used.
-	  email = error.email;
+	  var email = error.email;
 	  // The firebase.auth.AuthCredential type that was used.
 	  var credential = error.credential;
 	  // ...
@@ -133,6 +134,7 @@ function renderImages(selectFood, selectMoney, selectMethod) {
       $("#back").css("display", "block");
       $("#reset").css("display", "block");
       gimme.play();
+      page = 2;
     }
   });
 
@@ -145,6 +147,8 @@ function renderImages(selectFood, selectMoney, selectMethod) {
       console.log(search.maxprice);
       $("#screen2").css("display", "none");
       $("#screen3").css("display", "block");
+      page = 3;
+      coindrop.play();
     }
   });
 
@@ -156,6 +160,7 @@ function renderImages(selectFood, selectMoney, selectMethod) {
       $("#screen2").css("display", "none");
       $("#screen3").css("display", "block");
       kaching.play();
+      page = 3;
     }
   });
 
@@ -169,6 +174,7 @@ function renderImages(selectFood, selectMoney, selectMethod) {
       console.log(longitude);
       $("#screen3").css("display", "none");
       $("#screen4").css("display", "block");
+      page = 4;
     }
   });
 
@@ -224,7 +230,42 @@ $("#reset").on('click', function () {
 
 $('#back').on('click', function () {
 
-  console.log("back");
+  if (page==4){
+    $("#screen1").css("display","none");
+     $("#screen2").css("display","none");
+     $("#screen3").css("display","block");
+     $("#screen4").css("display","none");
+     page=3;
+     selectMethod = false;
+     selectMoney = true;
+     selectFood = true;
+     renderImages(selectFood, selectMoney, selectMethod);
+   }
+ 
+   else if (page==3){
+     $("#screen1").css("display","none");
+     $("#screen2").css("display","block");
+     $("#screen3").css("display","none");
+     $("#screen4").css("display","none");
+    page=2;
+     selectMoney = false;
+     selectMethod = false;
+     selectFood = true;
+     renderImages(selectFood, selectMoney, selectMethod);
+ 
+   }
+   else if (page==2){
+     $("#screen1").css("display","block");
+     $("#screen2").css("display","none");
+     $("#screen3").css("display","none");
+     $("#screen4").css("display","none");
+     selectFood = false;
+     selectMoney = false;
+     selectMethod = false;
+     page=1;
+     renderImages(selectFood, selectMoney, selectMethod);
+   }
+ 
 
 });
 

@@ -170,9 +170,19 @@ h3 {
 }
 
 #login {
-	margin-top:8px;
-	float:right;
+	margin-top: 8px;
+    float: right;
+    background-color: black;
+    border-style: solid;
+    border-color: black;
+    border-width: 1px;
 }
+
+#loginlabel {
+ 	float: right;
+ 	color: #ffffff;
+ 	font-family: 'Nunito', sans-serif;
+ } 
 
 #wannaspend{
 	background-image:url("../images/howmuchyouwannaspendclear.png");
