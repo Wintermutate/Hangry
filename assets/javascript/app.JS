@@ -10,7 +10,28 @@ var car = document.createElement('audio');
 var doorbell = document.createElement('audio');
 	       doorbell.setAttribute('src', "assets/images/doorbell.mp3");
 var running = document.createElement('audio');
-	       running.setAttribute('src', "assets/images/running.mp3");	       
+	       running.setAttribute('src', "assets/images/running.mp3");	 
+
+    // Initialize global variables. 
+  var selectFood = false; 
+  var selectMoney = false;
+  var selectMethod = false; 
+  var chosenFoods = [];
+  var selectedFoods = "";
+  var selectedMethod = "";
+  var latitude;
+  var longitude;
+
+  
+  var search = {
+    //name: name,
+    //email: email,
+    location: "",
+    radius: 0,
+    terms: "",
+    maxprice: "",
+    queryURL: ""
+  };             
   // Initialize Firebase
 var config = {
 apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
@@ -219,26 +240,7 @@ $('#back').on('click', function () {
 
 $(document).ready(function(){
 
-	// Initialize global variables. 
-	var selectFood = false; 
-	var selectMoney = false;
-	var selectMethod = false; 
-	var chosenFoods = [];
-	var selectedFoods = "";
-	var selectedMethod = "";
-	var latitude;
-	var longitude;
 
-	
-	var search = {
-		//name: name,
-		//email: email,
-		location: "",
-		radius: 0,
-		terms: "",
-		maxprice: "",
-		queryURL: ""
-	};
 
 
 
