@@ -200,6 +200,46 @@ $(document).ready(function(){
 	};	
 
 
+$("#back").on("click",function(){
+	if (page==4){
+		$("#screen1").css("display","none");
+		$("#screen2").css("display","none");
+		$("#screen3").css("display","block");
+		$("#screen4").css("display","none");
+		page=3;
+		selectMethod = false;
+		selectMoney = true;
+		selectFood = true;
+		renderImages(selectFood, selectMoney, selectMethod);
+	}
+
+	else if (page==3){
+		$("#screen1").css("display","none");
+		$("#screen2").css("display","block");
+		$("#screen3").css("display","none");
+		$("#screen4").css("display","none");
+		page=2;
+		selectMoney = false;
+		selectMethod = false;
+		selectFood = true;
+		renderImages(selectFood, selectMoney, selectMethod);
+
+	}
+	else if (page==2){
+		$("#screen1").css("display","block");
+		$("#screen2").css("display","none");
+		$("#screen3").css("display","none");
+		$("#screen4").css("display","none");
+		selectFood = false;
+		selectMoney = false;
+		selectMethod = false;
+		page=1;
+		renderImages(selectFood, selectMoney, selectMethod);
+	}
+
+})
+
+
 
 	$(".cuisine").on("click", function(){
 		
