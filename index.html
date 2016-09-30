@@ -16,6 +16,41 @@
     <!-- Boostrap JS CDN -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPkWAWtdYktOntutwWOcc8X4O3S1pkBQM&callback=initMap"></script>
+    <script type="text/javascript">
+        //initializes map with random coordinates
+  window.initMap = function() {
+     
+    var map = new google.maps.Map(document.getElementById('map'), {
+         center: {lat: -34.397, lng: 150.644},
+         zoom: 6
+    });
+    
+    var infoWindow = new google.maps.InfoWindow({map: map});
+
+       // Try HTML5 geolocation
+       if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(function(position) {
+var pos = {
+             lat: position.coords.latitude,
+             lng: position.coords.longitude
+           };
+             console.log(pos);
+
+           infoWindow.setPosition(pos);
+           infoWindow.setContent('location found');
+           latitude = pos.lat;
+           longitude = pos.lng;
+           map.setCenter(pos);
+         },function(){
+           handleLocationError(true, infoWindow, map.getCenter());
+         });
+       }else{
+         // Browser doesn't support Geolocation (newer chrome)
+         handleLocationError(false, infoWindow, map.getCenter());
+       }
+     }
+
+    </script>
     <!-- Font Awesome Icons CDN -->
     <script src="https://use.fontawesome.com/e1678ecf22.js"></script>
     <!-- Meyer's Reset -->
@@ -176,6 +211,7 @@
 </div>
 <!-- END OF SCREEN #4 -->
 
-<script type="text/javascript" src="assets/javascript/app.JS"></script>
+  <script type="text/javascript" src="assets/javascript/app.JS"></script>
+
 </body>
 </html>
