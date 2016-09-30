@@ -1,6 +1,6 @@
 .deselected {
-  filter: gray; /* IE6-9 */
-  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+  	filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
     -webkit-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
     box-shadow: 0px 2px 6px 2px rgba(0,0,0,0.75);
@@ -13,13 +13,13 @@
 }
 
 img:hover {
-  filter: none; /* IE6-9 */
-  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: none; /* IE6-9 */
+    -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
  }
 
 .selected {
 	filter: none; /* IE6-9 */
-  -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+    -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
   	margin-bottom:20px;
  	border-style:ridge;
     border-width:5px;
@@ -240,13 +240,13 @@ html, body {
 		}
 
 	.grid-block-image {
-		background-color: #444444;
-		/* background-image: url(../../../website/images/rome-apple.jpg);
-		background-size: cover; */
-		z-index: 10;
+			background-color: #444444;
+			/* background-image: url(../../../website/images/rome-apple.jpg);
+			background-size: cover; */
+			z-index: 10;
 	}
 		.grid-block-image:hover {
-  		cursor: pointer;
-  		opacity: 0.8;
-  		filter: alpha(opacity=80); / For IE8 and earlier /
+  			cursor: pointer;
+  			opacity: 0.8;
+  			filter: alpha(opacity=80); / For IE8 and earlier /
  }
