@@ -208,32 +208,31 @@ html, body {
      }
 .grid-block {
 		position: relative;
-		box-shadow: 0 1px 2px 0 #EEEEEE;
 		/* background-image: url(../../../website/images/rome-apple.jpg);
 		background-size: cover; */
 	}
 	.grid-block-content {
 		position: absolute;
 		visibility: hidden;
-		top: 0;
-		left: 0;
-		margin: 0;
-		padding: 10px 20px;
-		height: 170px;
-		color: #FFFFFF;
-		text-align: center;
-		line-height: 18px;
 		background-color: transparent;
-		-webkit-transition: all 300ms ease-in-out;
-		-moz-transition: all 300ms ease-in-out;
-		-o-transition: all 300ms ease-in-out;
-		transition: all 300ms ease-in-out;
+		-webkit-transition: all 200ms ease-in-out;
+		-moz-transition: all 200ms ease-in-out;
+		-o-transition: all 200ms ease-in-out;
+		transition: all 200ms ease-in-out;
 		z-index: 11;
 	}
 		.grid-block-content p {
-			color: #FFFFFF;
-			font-size: 14px;
-		}
+			position: absolute;
+  			padding: 40px;
+  			top: 0;
+ 			left: 0;
+  			width: 100%;
+ 			height: 100%;
+  			font-size: 24px;
+   			color: #FFFFFF;
+   			text-align: center;
+   			line-height: 18px;
+ 		}
 	
 		.grid-block:hover .grid-block-content {
 			visibility: visible;
@@ -241,12 +240,13 @@ html, body {
 		}
 
 	.grid-block-image {
-		padding: 0;
-		width: 100%;
-		height: 190px;
 		background-color: #444444;
 		/* background-image: url(../../../website/images/rome-apple.jpg);
 		background-size: cover; */
 		z-index: 10;
 	}
-	
+		.grid-block-image:hover {
+  		cursor: pointer;
+  		opacity: 0.8;
+  		filter: alpha(opacity=80); / For IE8 and earlier /
+ }
