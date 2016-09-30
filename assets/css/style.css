@@ -206,3 +206,47 @@ html, body {
 #map {
        height: 100%;
      }
+.grid-block {
+		position: relative;
+		box-shadow: 0 1px 2px 0 #EEEEEE;
+		/* background-image: url(../../../website/images/rome-apple.jpg);
+		background-size: cover; */
+	}
+	.grid-block-content {
+		position: absolute;
+		visibility: hidden;
+		top: 0;
+		left: 0;
+		margin: 0;
+		padding: 10px 20px;
+		height: 170px;
+		color: #FFFFFF;
+		text-align: center;
+		line-height: 18px;
+		background-color: transparent;
+		-webkit-transition: all 300ms ease-in-out;
+		-moz-transition: all 300ms ease-in-out;
+		-o-transition: all 300ms ease-in-out;
+		transition: all 300ms ease-in-out;
+		z-index: 11;
+	}
+		.grid-block-content p {
+			color: #FFFFFF;
+			font-size: 14px;
+		}
+	
+		.grid-block:hover .grid-block-content {
+			visibility: visible;
+			background-color: rgba(0, 0, 0, 0.6);
+		}
+
+	.grid-block-image {
+		padding: 0;
+		width: 100%;
+		height: 190px;
+		background-color: #444444;
+		/* background-image: url(../../../website/images/rome-apple.jpg);
+		background-size: cover; */
+		z-index: 10;
+	}
+	
