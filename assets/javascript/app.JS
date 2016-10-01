@@ -364,16 +364,28 @@ renderImages(selectFood, selectMoney, selectMethod);
         
           		var resultDiv = $('<div>');
 
-          		var name = results[i].name;
+              var locationDiv = $('<div>')  
+          		
+              var name = results[i].name;
 
-          		var p = $('<p>').text(name + " " + results[i].display_phone);
+              var location = results[i].location.display_address[0];
+
+              var displayLocation = $('<p>').text(location);
+
+          		var restautrant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
           		
           		var image = $('<img>').attr('src', results[i].image_url);
-
-          		p.prepend(image);
+              
+              var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
+          		
+              restautrant.prepend(image);
           			
-           		resultDiv.append(p);
-         
+           		resultDiv.append(restautrant);
+
+              resultDiv.prepend(ratingImage);
+
+              resultDiv.append(locationDiv);
+
           	// place the results into the resultDiv
           	$('.results').append(resultDiv);
         	
