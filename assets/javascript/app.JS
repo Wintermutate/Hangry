@@ -323,6 +323,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 		 var parameters = [];
 	        parameters.push(['term', search.terms]);
           parameters.push(['radius_filter', search.radius]);
+          parameters.push(['category_filter', "restaurants"]);
           parameters.push(['sort', '2']);
 	        parameters.push(['ll', search.location]);
 	        parameters.push(['callback', 'cb']);
@@ -366,22 +367,20 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var locationDiv = $('<div>')  
         		
-            var reviewDiv = $('<div>');
+            var reviewDiv = $('<br><div>');
 
             var reviewCount = results[i].review_count;
 
             var reviewSnip = results[i].snippet_text;
             
-            reviewDiv.prepend(reviewCount);
-
-            reviewDiv.append(" " + reviewSnip);
+            reviewDiv.prepend(reviewCount+" reviews -  " + reviewSnip);
 
             var name = results[i].name;
 
             var resultURL = results[i].url;            
 
             var restaurantLink = $('<a>').attr('href', resultURL);
-                        restaurantLink.text(name);
+            restaurantLink.text(name);
 
             var location = results[i].location.display_address[0];
             
@@ -393,19 +392,17 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             locationDiv.append(displayLocation);
 
-        		var restaurant = $('<p>').text(" " + results[i].display_phone + " Rating: " + results[i].rating);
+        		var restaurant = $('<a href="'+results[i].url+'">  '+results[i].name+'</a>');
 
-            restaurant.prepend(restaurantLink);
-        		
-        		var image = $('<img>').attr('src', results[i].image_url);
-            
-            var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
-        		
-            restaurant.prepend(image);
-        			
-         		resultDiv.append(restaurant);
+            var restaurant2 = $('<p>' + "  " + results[i].display_phone + "  Rating:  " + results[i].rating+'</p>');
 
-            resultDiv.prepend(ratingImage);
+        		var image = $('<br><img>').attr('src', results[i].image_url);
+        		
+            resultDiv.prepend(image);
+         		
+            resultDiv.append(restaurant);
+
+            resultDiv.append(restaurant2);
 
             resultDiv.append(locationDiv);
 
