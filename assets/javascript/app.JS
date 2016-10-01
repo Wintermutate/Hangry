@@ -323,6 +323,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 		 var parameters = [];
 	        parameters.push(['term', search.terms]);
           parameters.push(['radius_filter', search.radius]);
+          parameters.push(['sort', '2']);
 	        parameters.push(['ll', search.location]);
 	        parameters.push(['callback', 'cb']);
 	        parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -330,8 +331,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 	        parameters.push(['oauth_token', auth.accessToken]);
 	        parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
 	        parameters.push(['limit',10]);
-	        parameters.push(['sort_by','rating']);
-
+	        
         var message = {
             'action' : 'https://api.yelp.com/v2/search',
             'method' : 'GET',
@@ -366,37 +366,44 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var locationDiv = $('<div>')  
         		
+            var reviewDiv = $('<div>');
+
+            var reviewCount = results[i].review_count;
+
+            var reviewSnip = results[i].snippet_text;
+            
+            reviewDiv.prepend(reviewCount);
+
+            reviewDiv.append(" " + reviewSnip);
+
             var name = results[i].name;
 
-
             var location = results[i].location.display_address[0];
+            
+            var locationCity = results[i].location.display_address[1];
+            
+            var completeLocation = location.concat(" ", locationCity)
+            
+            var displayLocation = $('<p>').text(completeLocation);
 
-            var displayLocation = $('<p>').text(location);
+            locationDiv.append(displayLocation);
 
-              // var location = results[i].location[display_address[0]];
-
-              // var displayLocation = $('<p>').text(location);
-
-
-        		var restautrant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
+        		var restaurant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
         		
         		var image = $('<img>').attr('src', results[i].image_url);
             
             var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
         		
-            restautrant.prepend(image);
+            restaurant.prepend(image);
         			
-         		resultDiv.append(restautrant);
+         		resultDiv.append(restaurant);
 
             resultDiv.prepend(ratingImage);
 
-
             resultDiv.append(locationDiv);
 
-              // resultDiv.append(locationDiv);
+            resultDiv.append(reviewDiv);
 
-
-          	// place the results into the resultDiv
           	$('.results').append(resultDiv);
 
             }
