@@ -378,6 +378,8 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var name = results[i].name;
 
+            var 
+            
             var location = results[i].location.display_address[0];
             
             var locationCity = results[i].location.display_address[1];
