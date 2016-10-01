@@ -368,9 +368,9 @@ renderImages(selectFood, selectMoney, selectMethod);
           		
               var name = results[i].name;
 
-              var location = results[i].location.display_address[0];
+              // var location = results[i].location[display_address[0]];
 
-              var displayLocation = $('<p>').text(location);
+              // var displayLocation = $('<p>').text(location);
 
           		var restautrant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
           		
@@ -384,7 +384,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
               resultDiv.prepend(ratingImage);
 
-              resultDiv.append(locationDiv);
+              // resultDiv.append(locationDiv);
 
           	// place the results into the resultDiv
           	$('.results').append(resultDiv);
