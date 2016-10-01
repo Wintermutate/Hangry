@@ -378,8 +378,11 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var name = results[i].name;
 
-            var 
-            
+            var resultURL = results[i].url;            
+
+            var restaurantLink = $('<a>').attr('href', resultURL);
+            restaurantLink.text(name);
+
             var location = results[i].location.display_address[0];
             
             var locationCity = results[i].location.display_address[1];
@@ -390,7 +393,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             locationDiv.append(displayLocation);
 
-        		var restaurant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
+        		var restaurant = $('<p>').text(" " + restaurantLink[0].innerHTML + " " + results[i].display_phone + " Rating: " + results[i].rating);
         		
         		var image = $('<img>').attr('src', results[i].image_url);
             
