@@ -170,8 +170,8 @@ function renderImages(selectFood, selectMoney, selectMethod) {
       selectMethod = true;
       selectedMethod = ($(this).data('method'));
       console.log(selectedMethod);
-      console.log(latitude);
-      console.log(longitude);
+      // console.log(latitude);
+      // console.log(longitude);
       $("#screen3").css("display", "none");
       $("#screen4").css("display", "block");
       page = 4;
@@ -300,9 +300,6 @@ renderImages(selectFood, selectMoney, selectMethod);
         	consumerSecret : auth.consumerSecret,
         	tokenSecret : auth.accessTokenSecret
             };	
-
-
-		// need Rick's help getting the user location and storing in these variables
 	
 	  	search.location = latitude+","+longitude;
 	  	console.log(search.location);
@@ -325,6 +322,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 		 var parameters = [];
 	        parameters.push(['term', search.terms]);
+          parameters.push(['radius_filter', search.radius]);
 	        parameters.push(['ll', search.location]);
 	        parameters.push(['callback', 'cb']);
 	        parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -358,38 +356,53 @@ renderImages(selectFood, selectMoney, selectMethod);
 
 
 	    $('.results').empty();
-	    	var results = response.businesses;
-	    	console.log(results);
-        	for (var i = 0; i < results.length; i++){     
+	    var results = response.businesses;
+	    console.log(results);
+        	
+        if (results.length>0){
+          for (var i = 0; i < results.length; i++){     
         
-          		var resultDiv = $('<div>');
+        		var resultDiv = $('<div>');
 
-              var locationDiv = $('<div>')  
-          		
-              var name = results[i].name;
+            var locationDiv = $('<div>')  
+        		
+            var name = results[i].name;
+
+
+            var location = results[i].location.display_address[0];
+
+            var displayLocation = $('<p>').text(location);
 
               // var location = results[i].location[display_address[0]];
 
               // var displayLocation = $('<p>').text(location);
 
-          		var restautrant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
-          		
-          		var image = $('<img>').attr('src', results[i].image_url);
-              
-              var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
-          		
-              restautrant.prepend(image);
-          			
-           		resultDiv.append(restautrant);
 
-              resultDiv.prepend(ratingImage);
+        		var restautrant = $('<p>').text(" " + name + " " + results[i].display_phone + " Rating: " + results[i].rating);
+        		
+        		var image = $('<img>').attr('src', results[i].image_url);
+            
+            var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
+        		
+            restautrant.prepend(image);
+        			
+         		resultDiv.append(restautrant);
+
+            resultDiv.prepend(ratingImage);
+
+
+            resultDiv.append(locationDiv);
 
               // resultDiv.append(locationDiv);
 
+
           	// place the results into the resultDiv
           	$('.results').append(resultDiv);
-        	
-        	}
+
+            }
+            }else{
+              $('.results').text("No restaurants near you!");
+              }
 
 	   });
 
