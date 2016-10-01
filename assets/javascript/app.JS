@@ -367,22 +367,17 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var locationDiv = $('<div>')  
         		
-            var reviewDiv = $('<div>');
+            var reviewDiv = $('<br><div>');
 
             var reviewCount = results[i].review_count;
 
             var reviewSnip = results[i].snippet_text;
             
-            reviewDiv.prepend(reviewCount);
-
-            reviewDiv.append(" " + reviewSnip);
+            reviewDiv.prepend(reviewCount+" reviews -  " + reviewSnip);
 
             var name = results[i].name;
 
             var resultURL = results[i].url;            
-
-            var restaurantLink = ('<a href='+resultURL+'/>');
-            // restaurantLink.text(name);
 
             var location = results[i].location.display_address[0];
             
@@ -394,17 +389,13 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             locationDiv.append(displayLocation);
 
-        		var restaurant = $('<a href="'+results[i].url+'">'+results[i].name+'</a>');
+        		var restaurant = $('<a href="'+results[i].url+'">  '+results[i].name+'</a>');
 
-            var restaurant2 = $('<p>' +"  " + results[i].display_phone + " Rating: " + results[i].rating);
+            var restaurant2 = $('<p>' + "  " + results[i].display_phone + "  Rating:  " + results[i].rating+'</p>');
         		
-        		var image = $('<img>').attr('src', results[i].image_url);
-            
-            var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
+        		var image = $('<br><img>').attr('src', results[i].image_url);
         		
-            restaurant.prepend(image);
-        		
-            resultDiv.prepend(ratingImage);
+            resultDiv.prepend(image);
          		
             resultDiv.append(restaurant);
 
@@ -413,8 +404,6 @@ renderImages(selectFood, selectMoney, selectMethod);
             resultDiv.append(locationDiv);
 
             resultDiv.append(reviewDiv);
-
-            resultDiv.append(restaurantLink);
 
           	$('.results').append(resultDiv);
 
