@@ -27,7 +27,7 @@ body {
 	font-family: 'Nunito', sans-serif;`
 	background-color:black;
 	background-image:url("../images/background4.jpg");
-/*	background-size: 100% 100%;*/
+	background-size: 100% 100%;
 }
 
 #poor {
@@ -176,11 +176,13 @@ h3 {
     border-style: solid;
     border-color: black;
     border-width: 1px;
+    color:white;
 }
 
 #loginlabel {
  	float: right;
- 	color: #ffffff;
+ 	color: white;
+ 	font-color:white;
  	font-family: 'Nunito', sans-serif;
  } 
 
@@ -208,3 +210,7 @@ html, body {
 #map {
        height: 100%;
      }
+
+ p {
+ 	color:white;
+ }
