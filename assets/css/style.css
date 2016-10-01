@@ -27,7 +27,7 @@ body {
 	font-family: 'Nunito', sans-serif;`
 	background-color:black;
 	background-image:url("../images/background4.jpg");
-/*	background-size: 100% 100%;*/
+	/*background-size: 100% 100%;*/
 }
 
 #poor {
@@ -170,18 +170,20 @@ h3 {
 }
 
 #login {
-	margin-top: 8px;
-    float: right;
-    background-color: black;
-    border-style: solid;
-    border-color: black;
-    border-width: 1px;
+   margin-top: 8px;
+   float: right;
+   background-color: black;
+   border-style: solid;
+   border-color: black;
+   border-width: 1px;
+   color:white;
 }
 
 #loginlabel {
  	float: right;
- 	color: #ffffff;
- 	font-family: 'Nunito', sans-serif;
+ 	color: white;
+ 	font-color:white;
+ 	font-family: 'Nunito', sans-serif
  } 
 
 #wannaspend{
@@ -208,3 +210,6 @@ html, body {
 #map {
        height: 100%;
      }
+p {
+	color:white;
+}
