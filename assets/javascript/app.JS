@@ -323,6 +323,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 		 var parameters = [];
 	        parameters.push(['term', search.terms]);
           parameters.push(['radius_filter', search.radius]);
+          parameters.push(['category_filter', "restaurants"]);
           parameters.push(['sort', '2']);
 	        parameters.push(['ll', search.location]);
 	        parameters.push(['callback', 'cb']);
@@ -380,8 +381,8 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             var resultURL = results[i].url;            
 
-            var restaurantLink = $('<a>').attr('href', resultURL);
-            restaurantLink.text(name);
+            var restaurantLink = ('<a href='+resultURL+'/>');
+            // restaurantLink.text(name);
 
             var location = results[i].location.display_address[0];
             
@@ -393,21 +394,27 @@ renderImages(selectFood, selectMoney, selectMethod);
 
             locationDiv.append(displayLocation);
 
-        		var restaurant = $('<p>').text(" " + restaurantLink[0].innerHTML + " " + results[i].display_phone + " Rating: " + results[i].rating);
+        		var restaurant = $('<a href="'+results[i].url+'">'+results[i].name+'</a>');
+
+            var restaurant2 = $('<p>' +"  " + results[i].display_phone + " Rating: " + results[i].rating);
         		
         		var image = $('<img>').attr('src', results[i].image_url);
             
             var ratingImage = $('<img>').attr('src', results[i].rating_img_url_small);
         		
             restaurant.prepend(image);
-        			
-         		resultDiv.append(restaurant);
-
+        		
             resultDiv.prepend(ratingImage);
+         		
+            resultDiv.append(restaurant);
+
+            resultDiv.append(restaurant2);
 
             resultDiv.append(locationDiv);
 
             resultDiv.append(reviewDiv);
+
+            resultDiv.append(restaurantLink);
 
           	$('.results').append(resultDiv);
 
