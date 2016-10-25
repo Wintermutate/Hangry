@@ -193,9 +193,11 @@ function renderImages(selectFood, selectMoney, selectMethod) {
 
 $(".cuisine").on("click", function () {
 
+  var parent  = $(this).parent();
+  parent.children(".grid-block-content").css("visibility", "visible");
 
   if ($(this).hasClass("selected")) {
-
+    parent.children(".grid-block-content").css("visibility", "hidden");
     $(this).addClass("deselected");
     $(this).removeClass("selected");
     var food = $(this).data("food");
@@ -209,7 +211,7 @@ $(".cuisine").on("click", function () {
     };
 
   } else if ($(this).hasClass("deselected")) {
-
+    
     $(this).addClass("selected");
     $(this).removeClass("deselected");
     var food = $(this).data("food");
