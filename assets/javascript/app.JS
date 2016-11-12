@@ -33,71 +33,68 @@ var coindrop = document.createElement('audio');
     maxprice: "",
     queryURL: ""
   };             
-  // Initialize Firebase
-var config = {
-apiKey: "AIzaSyBCOZD_mXD_Id9GIXvrEYxarrQSmChgBgQ",
-authDomain: "hangry-e5636.firebaseapp.com",
-databaseURL: "https://hangry-e5636.firebaseio.com",
-storageBucket: "hangry-e5636.appspot.com",
-messagingSenderId: "926964885767"
-};
-firebase.initializeApp(config);
 
-// Variable to reference the database
-var database = firebase.database();
+
+
+// Variable to reference the database --  This was stored in Firebase previously.  Need to create a different storage method here.
+// var database = firebase.database();
 
 
 // ****  --  setup Google sign-in  manual integration.  --  ***
 
-var provider = new firebase.auth.GoogleAuthProvider();
+// var provider = new firebase.auth.GoogleAuthProvider();
 
 
+// Sign-in was integrated with Firebase previously.  Need to implement manual Google sign-in integration to pull user properties.
 // get currently signed in user and set authStatus toggle, get user object items,  push text onto button
-firebase.auth().onAuthStateChanged(function(user){
-	if (user) {
-	  authStatus = true
-	  $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
-	  var user = user;
-	  var name = user.displayName;
-	  var email = user.email;
-	  var photoUrl = user.photoURL;
-	  var uid = user.uid;
-	} else {
-	  authStatus = false;
-	  $("#login").text("Login");
-	}
+// firebase.auth().onAuthStateChanged(function(user){
+// 	if (user) {
+// 	  authStatus = true
+// 	  $("#login").text("Welcome "+user.displayName+"  --  Sign Out")
+// 	  var user = user;
+// 	  var name = user.displayName;
+// 	  var email = user.email;
+// 	  var photoUrl = user.photoURL;
+// 	  var uid = user.uid;
+// 	} else {
+// 	  authStatus = false;
+// 	  $("#login").text("Login");
+// 	}
 
-});
+// });
 
 function logmein() {
+
+  console.log("Will update the logmein function later.");
 	
-	firebase.auth().signInWithPopup(provider).then(function(result) {
-		// This gives you a Google Access Token. You can use it to access the Google API.
-		var token = result.credential.accessToken;
+ //  // This integraeted with Firebase previously.  Need to update the with the manual Google sign-in method.
+	// auth().signInWithPopup(provider).then(function(result) {
+	// 	// This gives you a Google Access Token. You can use it to access the Google API.
+	// 	var token = result.credential.accessToken;
 
-		user = result.user;
+	// 	user = result.user;
 
-		name = result.user.displayName;
+	// 	name = result.user.displayName;
 
-		email = result.user.email;
+	// 	email = result.user.email;
 
 		authStatus = true;
 
-		console.log(name);
-		console.log(email);
+	// 	console.log(name);
+	// 	console.log(email);
 
 
-	}).catch(function(error) {
-	  // Handle Errors here.
-	  var errorCode = error.code;
-	  var errorMessage = error.message;
-	  // The email of the user's account used.
-	  var email = error.email;
-	  // The firebase.auth.AuthCredential type that was used.
-	  var credential = error.credential;
-	  // ...
-	});
-	//  We can include other logins later -- Facebook, Twitter, Github, etc.
+	// }).catch(function(error) {
+	//   // Handle Errors here.
+	//   var errorCode = error.code;
+	//   var errorMessage = error.message;
+	//   // The email of the user's account used.
+	//   var email = error.email;
+	//   // The firebase.auth.AuthCredential type that was used.
+	//   var credential = error.credential;
+	//   // ...
+	// });
+	// //  We can include other logins later -- Facebook, Twitter, Github, etc.
 }
 
 
@@ -105,7 +102,7 @@ function logmein() {
 $("#login").on("click",function(){
 	if (authStatus == true) {
     	// User is signed in.
-  		firebase.auth().signOut();
+  		console.log("user signed out");
   		authStatus = false;
   		} else {
     	logmein();
@@ -335,7 +332,7 @@ renderImages(selectFood, selectMoney, selectMethod);
 	  	console.log(search);
 
 	    // Save query parameters to Firebase
-		database.ref().push(search);
+		// database.ref().push(search);
 
 		 var parameters = [];
 	        parameters.push(['term', search.terms]);
